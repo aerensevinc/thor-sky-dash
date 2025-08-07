@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FrostGiant : Interactable
+public class Astroid : Interactable
 {
     public override void Interact()
     {

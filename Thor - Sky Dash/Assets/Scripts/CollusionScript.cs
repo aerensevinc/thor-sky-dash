@@ -4,10 +4,10 @@ public class CollusionScript : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Abstract colison");
-        if (collision.collider.GetComponent<FrostGiant>() != null)
+        Interactable interactable = collision.collider.GetComponentInParent<Interactable>();
+        if(interactable != null)
         {
-            Debug.Log("Collided with an obstacle!");
+            interactable.Interact();
         }
     }
 }
