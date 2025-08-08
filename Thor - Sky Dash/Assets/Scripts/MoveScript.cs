@@ -16,6 +16,7 @@ public class MoveScript : MonoBehaviour
     void Start()
     {
         SpriteRenderer.sprite = flyingUpRight;
+        SpriteRenderer.color = Color.white;
     }
 
     void Update()

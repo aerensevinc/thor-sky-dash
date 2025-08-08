@@ -1,14 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FireAstroid : Interactable
+public class FireAstroid : Obstacle
 {
-    public override void Interact()
+    public float speedConstant = 2f;
+    protected override void FixedUpdate()
     {
-        Debug.Log("Game Over!");
-    }
-    public void Start()
-    {
-        fallSpeed *= 2;
+        fallSpeed = GameManager.instance.gameSpeed * speedConstant;
+        transform.position += Vector3.down * fallSpeed * Time.deltaTime;
     }
 }

@@ -1,9 +1,5 @@
 using UnityEngine;
 
-public class FrostGiant : Interactable
+public class FrostGiant : Obstacle
 {
-    public override void Interact()
-    {
-        Debug.Log("Game Over!");
-    }
 }

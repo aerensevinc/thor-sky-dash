@@ -1,9 +1,6 @@
+using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 
-public class Astroid : Interactable
+public class Astroid : Obstacle
 {
-    public override void Interact()
-    {
-        Debug.Log("Game Over!");
-    }
 }
