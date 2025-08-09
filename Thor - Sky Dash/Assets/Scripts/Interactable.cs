@@ -3,11 +3,16 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public float fallSpeed;
-    protected virtual void FixedUpdate()
+    public float speedConstant = 1;
+    protected float gameSpeed;
+    void FixedUpdate()
     {
-        fallSpeed = GameManager.instance.gameSpeed;
-        transform.position += Vector3.down * fallSpeed * Time.deltaTime;
+        Move();
     }
     public abstract void Interact();
+    public virtual void Move()
+    {
+        gameSpeed = GameManager.instance.gameSpeed;
+        transform.position += Vector3.down * gameSpeed * speedConstant * Time.deltaTime;
+    }
 }
