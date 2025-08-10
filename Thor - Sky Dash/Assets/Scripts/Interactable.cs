@@ -9,10 +9,10 @@ public abstract class Interactable : MonoBehaviour
     {
         Move();
     }
-    public abstract void Interact();
     public virtual void Move()
     {
         gameSpeed = GameManager.instance.gameSpeed;
         transform.position += Vector3.down * gameSpeed * speedConstant * Time.deltaTime;
     }
+    public abstract void Interact();
 }

@@ -1,42 +1,47 @@
+using System;
 using System.Collections;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class IceMonster : MonoBehaviour
+public class IceMonster : Obstacle
 {
     public GameObject IceSpike;
     public float spawnRate = 2f;
-    public float y_position = 2.5f;
-    private bool inPosition = false;
+    public float y_position = 3f;
+    public float horizontalSpeed = 1f;
+    public float x_limit = 3f;
+    public float spawnDuration = 10f;
+    private bool isSpawning = false;
+    private bool spawningOver = false;
+    private int direction = 1;
 
-    void Start()
+    public override void Move()
     {
-        StartCoroutine(FlyDownRoutine(y_position));
-    }
-    void Update()
-    {
-        if (inPosition)
+        if (x_limit - Mathf.Abs(transform.position.x) < 0.2f)
         {
-            StartCoroutine(SpawnRoutine());
-            inPosition = false;
+            direction = -direction;
         }
+        if (!isSpawning && !spawningOver && transform.position.y <= y_position)
+        {
+            StartCoroutine(SpawnRoutine(spawnDuration));
+            isSpawning = true;
+        }
+        float changeY = isSpawning ? 0 : GameManager.instance.gameSpeed * speedConstant * Time.deltaTime;
+        float changeX = horizontalSpeed * direction * Time.deltaTime;
+        transform.position += new Vector3(changeX, -changeY, 0);
     }
 
-    private IEnumerator SpawnRoutine()
+    private IEnumerator SpawnRoutine(float spawnDuration)
     {
-        while (true)
+        float timer = 0f;
+        while (timer < spawnDuration)
         {
-            Instantiate(IceSpike, transform.position, Quaternion.identity);
+            Instantiate(IceSpike, transform.position + Vector3.down, Quaternion.identity);
             yield return new WaitForSeconds(spawnRate);
+            timer += spawnRate;
         }
-    }
-    private IEnumerator FlyDownRoutine(float y_position)
-    {
-        while (transform.position.y > y_position)
-        {
-            transform.position += Vector3.down * GameManager.instance.gameSpeed * Time.deltaTime;
-            yield return null;
-        }
-        inPosition = true;
+        spawningOver = true;
+        isSpawning = false;
     }
 }
