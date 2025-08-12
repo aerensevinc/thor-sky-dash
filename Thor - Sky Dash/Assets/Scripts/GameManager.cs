@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,10 +8,15 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject Thor;
     private SpriteRenderer thorSprite;
+    public TMP_Text pointText;
+    public TMP_Text coinText;
     public int coinCount = 0;
+    public int points = 0;
     public float gameSpeed = 10f;
     public float gameSpeedConstant = 0.2f;
     public float gameSpeedChangeRate = 50f;
+    public bool gameStarted = false;
+    public bool gameOver = false;
     public bool isThorInvincible = false;
     private void Awake()
     {
@@ -25,10 +31,20 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(IncreaseSpeedRoutine(gameSpeedChangeRate, gameSpeedConstant));
+        coinCount = 0;
+        points = 0;
+        gameStarted = false;
+        gameOver = false;
     }
     private void Update()
     {
-        Debug.Log($"Game Speed: {gameSpeed}");
+        coinText.text = $"Coins: {coinCount}";
+        pointText.text = $"{points}";
+        if (gameOver)
+        {
+            /*gameSpeed = 0;*/
+            Debug.Log("Game Over!");
+        }
     }
     private IEnumerator IncreaseSpeedRoutine(float changeRate, float increase)
     {

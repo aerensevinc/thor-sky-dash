@@ -9,6 +9,7 @@ public class FlyingSkeleton : Obstacle
     public override void Move()
     {
         float thor_x;
+        float gameSpeed = GameManager.instance.gameSpeed;
         if (GameManager.instance.Thor != null)
         {
             thor_x = GameManager.instance.Thor.transform.position.x;
@@ -19,8 +20,8 @@ public class FlyingSkeleton : Obstacle
         {
             direction = 0;
         }
-        float changeX = direction * horizontalSpeed * Time.deltaTime;
-        float changeY = GameManager.instance.gameSpeed * speedConstant * Time.deltaTime;
+        float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
+        float changeY = gameSpeed * speedConstant * Time.deltaTime;
         transform.position += new Vector3(changeX, -changeY, 0);
     }
 }

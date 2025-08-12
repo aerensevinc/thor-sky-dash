@@ -18,6 +18,7 @@ public class IceMonster : Obstacle
 
     public override void Move()
     {
+        float gameSpeed = GameManager.instance.gameSpeed;
         if (x_limit - Mathf.Abs(transform.position.x) < 0.2f)
         {
             direction = -direction;
@@ -27,8 +28,8 @@ public class IceMonster : Obstacle
             StartCoroutine(SpawnRoutine(spawnDuration));
             isSpawning = true;
         }
-        float changeY = isSpawning ? 0 : GameManager.instance.gameSpeed * speedConstant * Time.deltaTime;
-        float changeX = horizontalSpeed * direction * Time.deltaTime;
+        float changeY = isSpawning ? 0 : gameSpeed * speedConstant * Time.deltaTime;
+        float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
         transform.position += new Vector3(changeX, -changeY, 0);
     }
 

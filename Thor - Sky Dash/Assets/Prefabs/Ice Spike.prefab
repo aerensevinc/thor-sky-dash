@@ -165,4 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95d6d00b71f3e541a67fd56f7805ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 0
+  speedConstant: 1
+  pointsOnceDestroyed: 0
+  maxHealth: 1
+  health: 0

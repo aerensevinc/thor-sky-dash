@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class ButtonManager : MonoBehaviour
 {
-    public void Play()
+    public void PlayGame()
     {
         SceneManager.LoadScene("Game");
     }
-    public void Exit()
+    public void ExitGame()
     {
-        Debug.Log("nooo la polizzi");
+        Debug.Log("Game exit");
         Application.Quit();
     }
 }

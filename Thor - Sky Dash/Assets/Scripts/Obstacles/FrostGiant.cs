@@ -16,11 +16,11 @@ public class FrostGiant : Obstacle
         float gameSpeed = GameManager.instance.gameSpeed;
         if (isMovingLeft)
         {
-            transform.position += new Vector3(-horizontalSpeed, -gameSpeed, 0) * Time.deltaTime * speedConstant;
+            transform.position += new Vector3(-horizontalSpeed, -1, 0) * gameSpeed * speedConstant * Time.deltaTime;
         }
         else
         {
-            transform.position += new Vector3(horizontalSpeed, -gameSpeed, 0) * Time.deltaTime * speedConstant;
+            transform.position += new Vector3(horizontalSpeed, -1, 0) * gameSpeed * speedConstant * Time.deltaTime;
         }
         
     }

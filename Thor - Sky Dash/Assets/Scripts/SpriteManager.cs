@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class SpriteManager : MonoBehaviour
 {
-    public static Sprite flyingUpRight;
-    public static Sprite flyingUpLeft;
-    public static Sprite flyingRight;
-    public static Sprite flyingLeft;
-    public static Sprite lightningUpRight;
-    public static Sprite lightningUpLeft;
-    public static Sprite lightningRight;
-    public static Sprite lightningLeft;
+    public static SpriteManager instance;
+    public Sprite upRight;
+    public Sprite upLeft;
+    public Sprite right;
+    public Sprite left;
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
 }
