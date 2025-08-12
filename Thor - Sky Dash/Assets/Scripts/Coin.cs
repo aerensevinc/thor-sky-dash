@@ -6,6 +6,5 @@ public class Coin : Interactable
     {
         Destroy(gameObject);
         GameManager.instance.coinCount += 1;
-        Debug.Log($"Current Coin Count : {GameManager.instance.coinCount}");
     }
 }

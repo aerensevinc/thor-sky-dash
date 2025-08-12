@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class MoveScript : MonoBehaviour
 {
-    public SpriteRenderer SpriteRenderer;
+    public SpriteRenderer thorSprite;
     public Sprite flyingUpRight;
     public Sprite flyingUpLeft;
     public Sprite flyingRight;
@@ -15,8 +15,8 @@ public class MoveScript : MonoBehaviour
 
     void Start()
     {
-        SpriteRenderer.sprite = flyingUpRight;
-        SpriteRenderer.color = Color.white;
+        thorSprite.sprite = flyingUpRight;
+        thorSprite.color = Color.white;
     }
 
     void Update()
@@ -24,17 +24,17 @@ public class MoveScript : MonoBehaviour
         transform.position += Vector3.right * movement * moveSpeed * Time.deltaTime;
         if (movement > 0)
         {
-            SpriteRenderer.sprite = flyingRight;
+            thorSprite.sprite = flyingRight;
             isMovingLeft = false;
         }
         else if (movement < 0)
         {
-            SpriteRenderer.sprite = flyingLeft;
+            thorSprite.sprite = flyingLeft;
             isMovingLeft = true;
         }
         else
         {
-            SpriteRenderer.sprite = isMovingLeft ? flyingUpLeft : flyingUpRight;
+            thorSprite.sprite = isMovingLeft ? flyingUpLeft : flyingUpRight;
         }
     }
     public void Move(InputAction.CallbackContext context)

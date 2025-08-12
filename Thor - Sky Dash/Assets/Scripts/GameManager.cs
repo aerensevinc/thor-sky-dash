@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,8 +9,10 @@ public class GameManager : MonoBehaviour
     private SpriteRenderer thorSprite;
     public int coinCount = 0;
     public float gameSpeed = 10f;
+    public float gameSpeedConstant = 0.2f;
+    public float gameSpeedChangeRate = 50f;
     public bool isThorInvincible = false;
-    void Awake()
+    private void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -19,10 +22,22 @@ public class GameManager : MonoBehaviour
         instance = this;
         thorSprite = Thor.GetComponent<SpriteRenderer>();
     }
-    void Update()
+    private void Start()
     {
+        StartCoroutine(IncreaseSpeedRoutine(gameSpeedChangeRate, gameSpeedConstant));
     }
-
+    private void Update()
+    {
+        Debug.Log($"Game Speed: {gameSpeed}");
+    }
+    private IEnumerator IncreaseSpeedRoutine(float changeRate, float increase)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(changeRate);
+            gameSpeed += increase;
+        }
+    }
     public void ChangeGameSpeed(float intensity, float duration)
     {
         StartCoroutine(GameSpeedRoutine(intensity, duration));

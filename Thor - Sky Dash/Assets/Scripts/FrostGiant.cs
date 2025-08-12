@@ -13,7 +13,7 @@ public class FrostGiant : Obstacle
     }
     public override void Move()
     {
-        gameSpeed = GameManager.instance.gameSpeed;
+        float gameSpeed = GameManager.instance.gameSpeed;
         if (isMovingLeft)
         {
             transform.position += new Vector3(-horizontalSpeed, -gameSpeed, 0) * Time.deltaTime * speedConstant;
