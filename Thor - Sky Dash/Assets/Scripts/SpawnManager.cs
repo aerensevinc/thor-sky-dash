@@ -7,17 +7,28 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public SpawnManager instance;
     public float obstacleSpawnRate;
     public float powerUpSpawnRate;
-    public float coinSpawnRate;
     public float x_limit = 3f;
-    public GameObject coin;
     public List<SpawnableEntry> obstacleList, powerUpList;
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
     private void Start()
+    {
+        StartSpawning();
+    }
+    public void StartSpawning()
     {
         StartCoroutine(SpawnObstacleRoutine());
         StartCoroutine(SpawnPowerUpRoutine());
-        StartCoroutine(SpawnCoinRoutine());
     }
     private IEnumerator SpawnObstacleRoutine()
     {
@@ -37,15 +48,6 @@ public class SpawnManager : MonoBehaviour
             UnityEngine.Vector3 spawnPosition = new UnityEngine.Vector3(UnityEngine.Random.Range(-x_limit, x_limit), 10, 0);
             Instantiate(currentPowerUp, spawnPosition, quaternion.identity);
             yield return new WaitForSeconds(powerUpSpawnRate);
-        }
-    }
-    private IEnumerator SpawnCoinRoutine()
-    {
-        while (true)
-        {
-            UnityEngine.Vector3 spawnPosition = new UnityEngine.Vector3(UnityEngine.Random.Range(-x_limit, x_limit), 10, 0);
-            Instantiate(coin, spawnPosition, quaternion.identity);
-            yield return new WaitForSeconds(coinSpawnRate);
         }
     }
     private GameObject GetRandomInList(List<SpawnableEntry> list)

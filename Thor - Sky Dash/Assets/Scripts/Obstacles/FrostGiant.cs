@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,9 +8,9 @@ public class FrostGiant : Obstacle
     public float horizontalSpeed = 1f;
     public float horizontalTime = 2f;
     private bool isMovingLeft = true;
-    void Start()
+    private void Start()
     {
-        StartCoroutine(ZigZagRoutine());
+        StartCoroutine(ZigZagRoutine(horizontalTime));
     }
     public override void Move()
     {
@@ -22,14 +23,17 @@ public class FrostGiant : Obstacle
         {
             transform.position += new Vector3(horizontalSpeed, -1, 0) * gameSpeed * speedConstant * Time.deltaTime;
         }
-        
+        if (3f - Mathf.Abs(transform.position.x) < 0.1f)
+        {
+            isMovingLeft = !isMovingLeft;
+        }
     }
-    private IEnumerator ZigZagRoutine()
+    private IEnumerator ZigZagRoutine(float duration)
     {
         while (true)
         {
         isMovingLeft = !isMovingLeft;
-        yield return new WaitForSeconds(horizontalTime);
+        yield return new WaitForSeconds(duration);
         }
     }
 }
