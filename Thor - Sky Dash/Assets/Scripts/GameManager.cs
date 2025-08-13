@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     private SpriteRenderer thorSprite;
     public TMP_Text pointText;
     public TMP_Text coinText;
+    [HideInInspector]
     public int coinCount = 0;
+    [HideInInspector]
     public int points = 0;
     public float gameSpeed = 10f;
     public float gameSpeedConstant = 0.2f;

@@ -10,11 +10,8 @@ public class LightningBolt : Interactable
         Obstacle obstacle = other.GetComponentInParent<Obstacle>();
         if (obstacle != null)
         {
-            if (--obstacle.health <= 0)
-            {
-                GameManager.instance.points += obstacle.pointsOnceDestroyed;
-                Destroy(other);
-            }
+            GameManager.instance.points += obstacle.pointsOnceDestroyed;
+            Destroy(other);
             Destroy(gameObject);
         }
     }
