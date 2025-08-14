@@ -14,11 +14,17 @@ public class GameManager : MonoBehaviour
     public int coinCount = 0;
     [HideInInspector]
     public int points = 0;
+    [HideInInspector]
+    public int health;
+    public int startHealth;
     public float gameSpeed = 10f;
     public float gameSpeedConstant = 0.2f;
     public float gameSpeedChangeRate = 50f;
+    [HideInInspector]
     public bool gameStarted = false;
+    [HideInInspector]
     public bool gameOver = false;
+    [HideInInspector]
     public bool isThorInvincible = false;
     private void Awake()
     {
@@ -35,6 +41,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(IncreaseSpeedRoutine(gameSpeedChangeRate, gameSpeedConstant));
         coinCount = 0;
         points = 0;
+        health = startHealth;
         gameStarted = false;
         gameOver = false;
     }
@@ -42,11 +49,16 @@ public class GameManager : MonoBehaviour
     {
         coinText.text = $"Coins: {coinCount}";
         pointText.text = $"{points}";
-        if (gameOver)
+        Debug.Log($"Health: {health}");
+        if (health <= 0)
         {
-            /*gameSpeed = 0;*/
-            Debug.Log("Game Over!");
+            gameOver = true;
         }
+        if (gameOver)
+            {
+                /*gameSpeed = 0;*/
+                Debug.Log("Game Over!");
+            }
     }
     private IEnumerator IncreaseSpeedRoutine(float changeRate, float increase)
     {

@@ -149,4 +149,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedConstant: 0.75
   pointsOnceDestroyed: 4
-  horizontalSpeed: 0.2
+  horizontalSpeed: 0.15

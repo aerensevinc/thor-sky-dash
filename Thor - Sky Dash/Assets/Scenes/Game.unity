@@ -988,9 +988,11 @@ MonoBehaviour:
   coinText: {fileID: 977764959}
   coinCount: 0
   points: 0
+  health: 0
+  startHealth: 3
   gameSpeed: 2
-  gameSpeedConstant: 0.2
-  gameSpeedChangeRate: 40
+  gameSpeedConstant: 0.1
+  gameSpeedChangeRate: 50
   gameStarted: 0
   gameOver: 0
   isThorInvincible: 0
@@ -1294,24 +1296,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instance: {fileID: 0}
-  obstacleSpawnRate: 2
-  powerUpSpawnRate: 8
+  isSpawning: 0
+  obstacleSpawnRate: 4
+  powerUpSpawnRate: 7
   x_limit: 3
   obstacleList:
   - preFab: {fileID: 1627637460324987238, guid: d3a06fc63ad91734aa8573d6db949e4a, type: 3}
-    spawnWeight: 0
+    spawnWeight: 20
   - preFab: {fileID: 4467769179179215100, guid: d846f5ee40bde9648b1148c6aadd5935, type: 3}
-    spawnWeight: 0
+    spawnWeight: 16
   - preFab: {fileID: 6515821039421293820, guid: d2749f2659831894e91c739f9920a90b, type: 3}
-    spawnWeight: 0
+    spawnWeight: 10
   - preFab: {fileID: 2840632725719258243, guid: 3c4d1efa130b65c46b85afdb5528ad32, type: 3}
-    spawnWeight: 1
+    spawnWeight: 8
   - preFab: {fileID: 2852391439219703492, guid: 5a712507e607bc5418dbbd04bd5047a1, type: 3}
-    spawnWeight: 0
+    spawnWeight: 2
   - preFab: {fileID: 5301869174176740631, guid: 785cb6f7a84c02d4e841c1d57fb966ec, type: 3}
-    spawnWeight: 1
+    spawnWeight: 6
   - preFab: {fileID: 191671723688895092, guid: 70123d4c502e33b429230d2751c66d21, type: 3}
-    spawnWeight: 0
+    spawnWeight: 5
   powerUpList:
   - preFab: {fileID: 169519598546961196, guid: 750959ca2ebf6d74fab57902dc0147a9, type: 3}
     spawnWeight: 5
@@ -1322,7 +1325,9 @@ MonoBehaviour:
   - preFab: {fileID: 6740272752370730926, guid: b75ae36ccbb090543aabe5f14c5fb032, type: 3}
     spawnWeight: 4
   - preFab: {fileID: 923887152147271408, guid: dfba87c06ee532b4fbb6fa12f69d53ac, type: 3}
-    spawnWeight: 30
+    spawnWeight: 36
+  - preFab: {fileID: 204975804325822410, guid: 52c749a59426f634698a9372e64b9267, type: 3}
+    spawnWeight: 2
 --- !u!4 &2049499602
 Transform:
   m_ObjectHideFlags: 0

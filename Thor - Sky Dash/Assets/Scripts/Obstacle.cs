@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,7 +14,8 @@ public abstract class Obstacle : Interactable
         }
         else
         {
-            GameManager.instance.gameOver = true;
+            GameManager.instance.health--;
+            Destroy(gameObject);
         }
     }
 }

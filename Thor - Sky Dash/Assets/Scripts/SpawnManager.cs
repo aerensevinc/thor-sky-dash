@@ -8,10 +8,13 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public SpawnManager instance;
+    [HideInInspector]
+    public bool isSpawning;
     public float obstacleSpawnRate;
     public float powerUpSpawnRate;
     public float x_limit = 3f;
     public List<SpawnableEntry> obstacleList, powerUpList;
+    private static float lastSpawnPosition;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -23,33 +26,34 @@ public class SpawnManager : MonoBehaviour
     }
     private void Start()
     {
+        isSpawning = true;
+        lastSpawnPosition = 0;
         StartSpawning();
     }
     public void StartSpawning()
     {
-        StartCoroutine(SpawnObstacleRoutine());
-        StartCoroutine(SpawnPowerUpRoutine());
+        StartCoroutine(SpawnRoutine(obstacleList, obstacleSpawnRate));
+        StartCoroutine(SpawnRoutine(powerUpList, powerUpSpawnRate));
     }
-    private IEnumerator SpawnObstacleRoutine()
+
+    private IEnumerator SpawnRoutine(List<SpawnableEntry> list, float spawnRate)
     {
-        while (true)
+        while (isSpawning)
         {
-            GameObject currentObstacle = GetRandomInList(obstacleList);
-            UnityEngine.Vector3 spawnPosition = new UnityEngine.Vector3(UnityEngine.Random.Range(-x_limit, x_limit), 10, 0);
-            Instantiate(currentObstacle, spawnPosition, quaternion.identity);
-            yield return new WaitForSeconds(obstacleSpawnRate);
+            float xPosition;
+            while (true)
+            {
+                xPosition = UnityEngine.Random.Range(-x_limit, x_limit);
+                if (Mathf.Abs(xPosition - lastSpawnPosition) > 1f) break;
+            }
+            lastSpawnPosition = xPosition;
+            GameObject currentObject = GetRandomInList(list);
+            UnityEngine.Vector3 spawnPosition = new UnityEngine.Vector3(xPosition, 10, 0);
+            Instantiate(currentObject, spawnPosition, quaternion.identity);
+            yield return new WaitForSeconds(spawnRate);
         }
     }
-    private IEnumerator SpawnPowerUpRoutine()
-    {
-        while (true)
-        { 
-            GameObject currentPowerUp = GetRandomInList(powerUpList);
-            UnityEngine.Vector3 spawnPosition = new UnityEngine.Vector3(UnityEngine.Random.Range(-x_limit, x_limit), 10, 0);
-            Instantiate(currentPowerUp, spawnPosition, quaternion.identity);
-            yield return new WaitForSeconds(powerUpSpawnRate);
-        }
-    }
+
     private GameObject GetRandomInList(List<SpawnableEntry> list)
     {
         float counter = 0;
