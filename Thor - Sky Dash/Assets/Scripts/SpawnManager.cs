@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -7,14 +8,15 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public SpawnManager instance;
     [HideInInspector]
-    public bool isSpawning;
+    public static SpawnManager instance;
+    public float bossSpawnRate;
     public float obstacleSpawnRate;
     public float powerUpSpawnRate;
-    public float x_limit = 3f;
-    public List<SpawnableEntry> obstacleList, powerUpList;
-    private static float lastSpawnPosition;
+    public float x_limit;
+    public List<SpawnableEntry> obstacleList, powerUpList, bossList;
+    private Coroutine obsRoutine, powRoutine;
+    private float lastSpawnPosition;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -26,19 +28,23 @@ public class SpawnManager : MonoBehaviour
     }
     private void Start()
     {
-        isSpawning = true;
         lastSpawnPosition = 0;
         StartSpawning();
+        StartCoroutine(BossSpawnRoutine());
     }
     public void StartSpawning()
     {
-        StartCoroutine(SpawnRoutine(obstacleList, obstacleSpawnRate));
-        StartCoroutine(SpawnRoutine(powerUpList, powerUpSpawnRate));
+        obsRoutine = StartCoroutine(SpawnRoutine(obstacleList, obstacleSpawnRate));
+        powRoutine = StartCoroutine(SpawnRoutine(powerUpList, powerUpSpawnRate));
     }
-
+    public void StopSpawning()
+    {
+        StopCoroutine(obsRoutine);
+        StopCoroutine(powRoutine);
+    }
     private IEnumerator SpawnRoutine(List<SpawnableEntry> list, float spawnRate)
     {
-        while (isSpawning)
+        while (true)
         {
             float xPosition;
             while (true)
@@ -53,10 +59,18 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(spawnRate);
         }
     }
-
+    private IEnumerator BossSpawnRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(bossSpawnRate);
+            GameObject currentBoss = GetRandomInList(bossList);
+            Instantiate(currentBoss, transform.position, quaternion.identity);
+        }
+    }
     private GameObject GetRandomInList(List<SpawnableEntry> list)
     {
-        float counter = 0;
+        float counter = 0f;
         float totalWeight = 0f;
         foreach (var entry in list)
         {

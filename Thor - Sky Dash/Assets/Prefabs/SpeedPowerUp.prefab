@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8674601327013245806}
   - component: {fileID: 9193417570412519942}
-  - component: {fileID: 2752466503999501528}
   - component: {fileID: 1220221715638492390}
+  - component: {fileID: 2752466503999501528}
   m_Layer: 0
   m_Name: SpeedPowerUp
   m_TagString: Untagged
@@ -89,21 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2752466503999501528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8020631168891517692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df65c18a54449574983da39327a42fe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedConstant: 1
-  intensity: 2
-  duration: 4
 --- !u!61 &1220221715638492390
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +135,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 7.3261876, y: 7.6810374}
   m_EdgeRadius: 0
+--- !u!114 &2752466503999501528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020631168891517692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df65c18a54449574983da39327a42fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verticalSpeed: 1
+  intensity: 2
+  duration: 4

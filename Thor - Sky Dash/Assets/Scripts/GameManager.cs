@@ -11,15 +11,15 @@ public class GameManager : MonoBehaviour
     public TMP_Text pointText;
     public TMP_Text coinText;
     [HideInInspector]
-    public int coinCount = 0;
+    public int coinCount;
     [HideInInspector]
-    public int points = 0;
+    public int points;
     [HideInInspector]
     public int health;
     public int startHealth;
-    public float gameSpeed = 10f;
-    public float gameSpeedConstant = 0.2f;
-    public float gameSpeedChangeRate = 50f;
+    public float gameSpeed;
+    public float gameSpeedConstant;
+    public float gameSpeedChangeRate;
     [HideInInspector]
     public bool gameStarted = false;
     [HideInInspector]
@@ -34,11 +34,11 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        thorSprite = Thor.GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
-        StartCoroutine(IncreaseSpeedRoutine(gameSpeedChangeRate, gameSpeedConstant));
+        StartCoroutine(GameSpeedRoutine());
+        thorSprite = Thor.GetComponent<SpriteRenderer>();
         coinCount = 0;
         points = 0;
         health = startHealth;
@@ -49,38 +49,32 @@ public class GameManager : MonoBehaviour
     {
         coinText.text = $"Coins: {coinCount}";
         pointText.text = $"{points}";
-        Debug.Log($"Health: {health}");
         if (health <= 0)
         {
             gameOver = true;
         }
-        if (gameOver)
-            {
-                /*gameSpeed = 0;*/
-                Debug.Log("Game Over!");
-            }
     }
-    private IEnumerator IncreaseSpeedRoutine(float changeRate, float increase)
+    private IEnumerator GameSpeedRoutine()
     {
         while (true)
         {
-            yield return new WaitForSeconds(changeRate);
-            gameSpeed += increase;
+            yield return new WaitForSeconds(gameSpeedChangeRate);
+            gameSpeed += gameSpeedConstant;
         }
     }
     public void ChangeGameSpeed(float intensity, float duration)
     {
-        StartCoroutine(GameSpeedRoutine(intensity, duration));
+        StartCoroutine(SpeedChangeRoutine(intensity, duration));
     }
-    public void MakeThorInvincible(float duration)
-    {
-        StartCoroutine(InvincibleRoutine(duration));
-    }
-    private IEnumerator GameSpeedRoutine(float intensity, float duration)
+    private IEnumerator SpeedChangeRoutine(float intensity, float duration)
     {
         gameSpeed *= intensity;
         yield return new WaitForSeconds(duration);
         gameSpeed /= intensity;
+    }
+    public void MakeThorInvincible(float duration)
+    {
+        StartCoroutine(InvincibleRoutine(duration));
     }
     private IEnumerator InvincibleRoutine(float duration)
     {

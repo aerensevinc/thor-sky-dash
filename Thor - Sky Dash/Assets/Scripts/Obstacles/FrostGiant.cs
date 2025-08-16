@@ -5,35 +5,30 @@ using UnityEngine;
 
 public class FrostGiant : Obstacle
 {
-    public float horizontalSpeed = 1f;
-    public float horizontalTime = 2f;
-    private bool isMovingLeft = true;
+    public float zigZagRate;
+    private int direction;
     private void Start()
     {
-        StartCoroutine(ZigZagRoutine(horizontalTime));
+        direction = transform.position.x > 3f ? -1 : 1;
+        StartCoroutine(ZigZagRoutine());
     }
     public override void Move()
     {
         float gameSpeed = GameManager.instance.gameSpeed;
-        if (isMovingLeft)
+        float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
+        float changeY = gameSpeed * verticalSpeed * Time.deltaTime;
+        transform.position += new Vector3(changeX, -changeY, 0);
+        if (Mathf.Abs(transform.position.x) > 3f)
         {
-            transform.position += new Vector3(-horizontalSpeed, -1, 0) * gameSpeed * speedConstant * Time.deltaTime;
-        }
-        else
-        {
-            transform.position += new Vector3(horizontalSpeed, -1, 0) * gameSpeed * speedConstant * Time.deltaTime;
-        }
-        if (3f - Mathf.Abs(transform.position.x) < 0.1f)
-        {
-            isMovingLeft = !isMovingLeft;
+            direction = -direction;
         }
     }
-    private IEnumerator ZigZagRoutine(float duration)
+    private IEnumerator ZigZagRoutine()
     {
         while (true)
         {
-        isMovingLeft = !isMovingLeft;
-        yield return new WaitForSeconds(duration);
+            direction = -direction;
+            yield return new WaitForSeconds(zigZagRate);
         }
     }
 }

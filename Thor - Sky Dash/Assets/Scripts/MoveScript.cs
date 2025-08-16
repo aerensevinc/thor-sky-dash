@@ -11,10 +11,8 @@ public class MoveScript : MonoBehaviour
     public Sprite flyingUpLeft;
     public Sprite flyingRight;
     public Sprite flyingLeft;
-    public float moveSpeed = 5f;
-    public float y_position = -5f;
-    public float x_limit = 3f;
-    public float epsilon = 0.01f;
+    public float moveSpeed;
+    public float y_position;
     private bool isMovingLeft = false;
     private float movement;
 
@@ -27,12 +25,12 @@ public class MoveScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Vector3 changeX = Vector3.right * movement * moveSpeed * Time.deltaTime;
+        Vector3 changeX = movement * moveSpeed * Time.deltaTime * Vector3.right;
         if (movement > 0)
         {
             thorSprite.sprite = flyingRight;
             isMovingLeft = false;
-            if (x_limit - transform.position.x > epsilon)
+            if (transform.position.x < 3.2f)
             {
                 transform.position += changeX;
             }
@@ -41,7 +39,7 @@ public class MoveScript : MonoBehaviour
         {
             thorSprite.sprite = flyingLeft;
             isMovingLeft = true;
-            if (x_limit + transform.position.x > epsilon)
+            if (transform.position.x > -3.2f)
             {
                 transform.position += changeX;
             }
@@ -77,7 +75,7 @@ public class MoveScript : MonoBehaviour
     {
         while (transform.position.y < y_position)
         {
-            transform.position += Vector3.up * Time.deltaTime * 2;
+            transform.position +=  2 * Time.deltaTime * Vector3.up;
             yield return null;
         }
         GameManager.instance.gameStarted = true;

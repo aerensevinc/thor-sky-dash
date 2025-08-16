@@ -4,36 +4,40 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class IceMonster : Obstacle
+public class IceMonster : Boss
 {
     public GameObject IceSpike;
-    public float spawnRate = 2f;
-    public float y_position = 3f;
-    public float horizontalSpeed = 1f;
-    public float x_limit = 3f;
-    public float spawnDuration = 10f;
-    private bool isSpawning = false;
-    private bool spawningOver = false;
-    private int direction = 1;
+    public float y_position;
+    public float spawnRate;
+    public float spawnDuration;
+    private bool isSpawning;
+    private bool spawningOver;
+    private int direction;
+    private void Start()
+    {
+        isSpawning = false;
+        spawningOver = false;
+        direction = transform.position.x > 3f ? -1 : 1;
+    }
 
     public override void Move()
     {
         float gameSpeed = GameManager.instance.gameSpeed;
-        if (x_limit - Mathf.Abs(transform.position.x) < 0.2f)
+        if (Mathf.Abs(transform.position.x) > 3f)
         {
             direction = -direction;
         }
         if (!isSpawning && !spawningOver && transform.position.y <= y_position)
         {
-            StartCoroutine(SpawnRoutine(spawnDuration));
+            StartCoroutine(SpawnRoutine());
             isSpawning = true;
         }
-        float changeY = isSpawning ? 0 : gameSpeed * speedConstant * Time.deltaTime;
         float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
+        float changeY = isSpawning ? 0 : gameSpeed * verticalSpeed * Time.deltaTime;
         transform.position += new Vector3(changeX, -changeY, 0);
     }
 
-    private IEnumerator SpawnRoutine(float spawnDuration)
+    private IEnumerator SpawnRoutine()
     {
         float timer = 0f;
         while (timer < spawnDuration)

@@ -137,5 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c6ef826a3357e4a979b59c5f1cf95e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedConstant: 1
-  pointsOnceDestroyed: 2
+  verticalSpeed: 1
+  horizontalSpeed: 0
+  pointsOnceDestroyed: 3

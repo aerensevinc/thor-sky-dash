@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3664dd566980541a8b8faf4937349b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedConstant: 1.2
-  pointsOnceDestroyed: 5
+  verticalSpeed: 1.2
   horizontalSpeed: 0.4
-  horizontalTime: 1
+  pointsOnceDestroyed: 6
+  zigZagRate: 1

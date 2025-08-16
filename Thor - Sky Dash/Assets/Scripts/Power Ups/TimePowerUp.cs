@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class TimePowerUp : Interactable
 {
-    public float powerUpIntensity = 10f;
-    public float powerUpDuration = 20f;
+    public float powerUpIntensity;
+    public float powerUpDuration;
     public override void Interact()
     {
         GameManager.instance.ChangeGameSpeed(1 / powerUpIntensity, powerUpDuration);

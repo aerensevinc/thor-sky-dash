@@ -5,11 +5,12 @@ public class DestroyerScript : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject obstacle = collision.gameObject;
-        if (obstacle.GetComponentInParent<Obstacle>() != null)
+        GameObject other = collision.gameObject;
+        Obstacle obstacle = other.GetComponentInParent<Obstacle>();
+        if (obstacle != null)
         {
-            GameManager.instance.points += obstacle.GetComponentInParent<Obstacle>().pointsOnceDestroyed;
+            GameManager.instance.points += obstacle.pointsOnceDestroyed;
         }
-        Destroy(collision.gameObject);
+        Destroy(other);
     }
 }
