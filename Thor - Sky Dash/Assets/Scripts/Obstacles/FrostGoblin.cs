@@ -13,10 +13,9 @@ public class FrostGoblin : Obstacle
     }
     public override void Move()
     {
-        float gameSpeed = GameManager.instance.gameSpeed;
         float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
-        float changeY = gameSpeed * verticalSpeed * Time.deltaTime;
-        transform.position += new Vector3(changeX, -changeY, 0);
+        float changeY = -gameSpeed * verticalSpeed * Time.deltaTime;
+        transform.position += new Vector3(changeX, changeY, 0);
         if (Mathf.Abs(transform.position.x) > 3f)
         {
             direction = -direction;

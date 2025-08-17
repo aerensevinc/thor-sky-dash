@@ -34,11 +34,13 @@ public class SpawnManager : MonoBehaviour
     }
     public void StartSpawning()
     {
+        Debug.Log("starting spawning!");
         obsRoutine = StartCoroutine(SpawnRoutine(obstacleList, obstacleSpawnRate));
         powRoutine = StartCoroutine(SpawnRoutine(powerUpList, powerUpSpawnRate));
     }
     public void StopSpawning()
     {
+        Debug.Log("stoping spawning");
         StopCoroutine(obsRoutine);
         StopCoroutine(powRoutine);
     }

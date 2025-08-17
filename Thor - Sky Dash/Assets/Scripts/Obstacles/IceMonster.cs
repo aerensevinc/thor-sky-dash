@@ -7,9 +7,9 @@ using UnityEngine;
 public class IceMonster : Boss
 {
     public GameObject IceSpike;
-    public float y_position;
     public float spawnRate;
     public float spawnDuration;
+    public float yPosition;
     private bool isSpawning;
     private bool spawningOver;
     private int direction;
@@ -22,19 +22,18 @@ public class IceMonster : Boss
 
     public override void Move()
     {
-        float gameSpeed = GameManager.instance.gameSpeed;
-        if (Mathf.Abs(transform.position.x) > 3f)
+        if (Mathf.Abs(transform.position.x) > 2.8f)
         {
             direction = -direction;
         }
-        if (!isSpawning && !spawningOver && transform.position.y <= y_position)
+        if (!isSpawning && !spawningOver && transform.position.y <= yPosition)
         {
             StartCoroutine(SpawnRoutine());
             isSpawning = true;
         }
         float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
-        float changeY = isSpawning ? 0 : gameSpeed * verticalSpeed * Time.deltaTime;
-        transform.position += new Vector3(changeX, -changeY, 0);
+        float changeY = isSpawning ? 0 : -gameSpeed * verticalSpeed * Time.deltaTime;
+        transform.position += new Vector3(changeX, changeY, 0);
     }
 
     private IEnumerator SpawnRoutine()

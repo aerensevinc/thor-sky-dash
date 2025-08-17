@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Boss : Obstacle
+public abstract class Boss : Obstacle
 {
     public float waitTime;
     private void Awake()
@@ -13,7 +13,7 @@ public class Boss : Obstacle
     {
         GameManager gameManager = GameManager.instance;
         SpawnManager spawnManager = SpawnManager.instance;
-        if (gameManager != null && spawnManager != null && !gameManager.gameOver)
+        if (gameManager != null && spawnManager != null)/*!gameManager.gameOver)*/
         {
             spawnManager.StartSpawning();
         }
