@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using JetBrains.Annotations;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,31 +10,31 @@ public class IceMonster : Boss
     public GameObject IceSpike;
     public float spawnRate;
     public float spawnDuration;
-    public float yPosition;
     private bool isSpawning;
     private bool spawningOver;
-    private int direction;
     private void Start()
     {
         isSpawning = false;
         spawningOver = false;
-        direction = transform.position.x > 3f ? -1 : 1;
+        horizontalDirection = transform.position.x > 3f ? -1 : 1;
     }
 
     public override void Move()
     {
         if (Mathf.Abs(transform.position.x) > 2.8f)
         {
-            direction = -direction;
+            horizontalSpeed = -horizontalSpeed;
         }
         if (!isSpawning && !spawningOver && transform.position.y <= yPosition)
         {
             StartCoroutine(SpawnRoutine());
             isSpawning = true;
         }
-        float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
-        float changeY = isSpawning ? 0 : -gameSpeed * verticalSpeed * Time.deltaTime;
-        transform.position += new Vector3(changeX, changeY, 0);
+        transform.position += new Vector3(DeltaX(), DeltaY(), 0);
+    }
+    public override float DeltaY(float constant = 1)
+    {
+        return isSpawning ? 0 : - constant * gameSpeed * verticalSpeed * Time.deltaTime;
     }
 
     private IEnumerator SpawnRoutine()

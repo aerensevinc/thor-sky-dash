@@ -149,9 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: 2
   horizontalSpeed: 1
-  pointsOnceDestroyed: 30
+  pointsOnceDestroyed: 50
   waitTime: 3.5
-  blackSword: {fileID: 3133066972848861051, guid: 02d7605a50b5c7e41b72b23ba14c99ed, type: 3}
+  yPosition: 3.6
+  spawnedObject: {fileID: 3133066972848861051, guid: 02d7605a50b5c7e41b72b23ba14c99ed, type: 3}
   spawnDuration: 20
   spawnRate: 1.1
-  yPosition: 3.6

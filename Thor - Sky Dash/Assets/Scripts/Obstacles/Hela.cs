@@ -5,47 +5,29 @@ using Unity.Android.Gradle;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Hela : Boss
+public class Hela : SpawnerBoss
 {
-    public GameObject blackSword;
-    public float spawnDuration;
-    public float spawnRate;
-    public float yPosition;
-    private bool isSpawning;
-    private bool spawningOver;
-    private int direction;
-    private void Start()
+    public override void DoBeforeSpawn()
     {
-        isSpawning = false;
-        spawningOver = false;
-        direction = UnityEngine.Random.value > 0.5f ? 1 : -1;
-        StartCoroutine(SpawnRoutine());
+        horizontalDirection = UnityEngine.Random.value > 0.5f ? 1 : -1;
     }
-    public override void Move()
+    
+    public override void MoveWhileExit()
     {
-        float changeY = -gameSpeed * verticalSpeed * Time.deltaTime;
-        if (transform.position.y > yPosition)
+        if (Mathf.Abs(transform.position.x) > 2f)
         {
-            transform.position += Vector3.up * changeY;
+            horizontalDirection = -horizontalDirection;
         }
-        else if (spawningOver)
-        {
-            direction = Mathf.Abs(transform.position.x) > 1.8f ? -direction : direction;
-            float changeX = gameSpeed * direction * horizontalSpeed * Time.deltaTime;
-            transform.position += new Vector3(changeX, changeY, 0);
-        }
-        else
-        {
-            isSpawning = true;
-        }
+        transform.position += new Vector3(DeltaX(), DeltaY(), 0);
     }
-    private IEnumerator SpawnRoutine()
+
+    protected override IEnumerator SpawnRoutine()
     {
         float timer = 0f;
-        yield return new WaitUntil(() => isSpawning);
+        isSpawning = true;
         while (timer < spawnDuration)
         {
-            Instantiate(blackSword, transform.position + Vector3.down, RotateTowardsThor());
+            Instantiate(spawnedObject, transform.position + Vector3.down, RotateTowardsThor());
             yield return new WaitForSeconds(spawnRate);
             timer += spawnRate;
         }

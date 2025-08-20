@@ -67,7 +67,7 @@ public class SpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(bossSpawnRate);
             GameObject currentBoss = GetRandomInList(bossList);
-            Instantiate(currentBoss, transform.position, quaternion.identity);
+            Instantiate(currentBoss, UnityEngine.Vector3.up * 10.5f, quaternion.identity);
         }
     }
     private GameObject GetRandomInList(List<SpawnableEntry> list)

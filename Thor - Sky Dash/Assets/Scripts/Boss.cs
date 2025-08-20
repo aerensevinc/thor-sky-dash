@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class Boss : Obstacle
+public class Boss : Obstacle
 {
     public float waitTime;
+    public float yPosition;
     private void Awake()
     {
         SpawnManager.instance.StopSpawning();
@@ -11,12 +12,16 @@ public abstract class Boss : Obstacle
     }
     private void OnDestroy()
     {
+        WhenDestroyed();
         GameManager gameManager = GameManager.instance;
         SpawnManager spawnManager = SpawnManager.instance;
         if (gameManager != null && spawnManager != null)/*!gameManager.gameOver)*/
         {
             spawnManager.StartSpawning();
         }
+    }
+    protected virtual void WhenDestroyed()
+    {
     }
     private IEnumerator WaitRoutine()
     {

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject Thor;
-    private SpriteRenderer thorSprite;
+    public SpriteRenderer thorSprite;
     public TMP_Text pointText;
     public TMP_Text coinText;
     [HideInInspector]
@@ -21,20 +21,22 @@ public class GameManager : MonoBehaviour
     public float gameSpeedConstant;
     public float gameSpeedChangeRate;
     [HideInInspector]
-    public bool gameStarted = false;
+    public bool gameStarted;
     [HideInInspector]
-    public bool gameOver = false;
+    public bool gameOver;
     [HideInInspector]
-    public bool isThorInvincible = false;
+    public bool isThorInvincible;
+
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
         }
         instance = this;
     }
+
     private void Start()
     {
         StartCoroutine(GameSpeedRoutine());
@@ -44,7 +46,9 @@ public class GameManager : MonoBehaviour
         health = startHealth;
         gameStarted = false;
         gameOver = false;
+        isThorInvincible = false;
     }
+
     private void Update()
     {
         coinText.text = $"Coins: {coinCount}";
@@ -54,6 +58,7 @@ public class GameManager : MonoBehaviour
             gameOver = true;
         }
     }
+
     private IEnumerator GameSpeedRoutine()
     {
         while (true)
@@ -62,20 +67,24 @@ public class GameManager : MonoBehaviour
             gameSpeed += gameSpeedConstant;
         }
     }
+
     public void ChangeGameSpeed(float intensity, float duration)
     {
         StartCoroutine(SpeedChangeRoutine(intensity, duration));
     }
+
     private IEnumerator SpeedChangeRoutine(float intensity, float duration)
     {
         gameSpeed *= intensity;
         yield return new WaitForSeconds(duration);
         gameSpeed /= intensity;
     }
+
     public void MakeThorInvincible(float duration)
     {
         StartCoroutine(InvincibleRoutine(duration));
     }
+
     private IEnumerator InvincibleRoutine(float duration)
     {
         thorSprite.color = Color.cyan;

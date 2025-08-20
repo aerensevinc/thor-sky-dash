@@ -138,4 +138,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verticalSpeed: 1
-  powerUpDuration: 6
+  horizontalSpeed: 0
+  powerUpDuration: 6.5

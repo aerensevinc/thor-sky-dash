@@ -2,34 +2,35 @@ using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Malekith : Boss
+public class Malekith : SpawnerBoss
 {
-    public GameObject aetherBlock;
-    public float spawnRate;
-    public float spawnDuration;
-    private bool spawningOver;
-    private void Start()
+    public override void MoveWhileExit()
     {
-        spawningOver = false;
-        StartCoroutine(SpawnRoutine());
+        float thor_x = GameManager.instance.Thor.transform.position.x;
+        if (Mathf.Abs(thor_x - transform.position.x) < 0.05f)
+        {
+            horizontalDirection = 0;
+        }
+        else
+        {
+            horizontalDirection = thor_x > transform.position.x ? 1 : -1;
+        }
+        transform.position += new Vector3(DeltaX(), DeltaY(), 0);
     }
-    public override void Move()
-    {
-        /* sa buraları doldur baboli ben yatingo
-        ya şu şeyleri Obstacle class ına al da rahatla allah rızası için
-        changeX changeY felan filan
-        50 kere yazdın şunu amk yeter la
-        neyse iyi geceler. */
-    }
-    private IEnumerator SpawnRoutine()
+
+    protected override IEnumerator SpawnRoutine()
     {
         float timer = 0f;
+        isSpawning = true;
+        yield return new WaitForSeconds(4);
         while (timer < spawnDuration)
         {
-            Instantiate(aetherBlock, Vector3.up * 6, quaternion.identity);
+            Instantiate(spawnedObject, Vector3.up * 10, quaternion.identity);
             yield return new WaitForSeconds(spawnRate);
             timer += spawnRate;
         }
+        yield return new WaitForSeconds(3);
+        isSpawning = false;
         spawningOver = true;
     }
 }

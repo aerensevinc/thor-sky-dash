@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 
 public abstract class Obstacle : Interactable
 {
-    public float horizontalSpeed = 0;
     public int pointsOnceDestroyed;
     public override void Interact()
     {
@@ -21,6 +20,14 @@ public abstract class Obstacle : Interactable
         {
             gameManager.health--;
             Destroy(gameObject);
+        }
+    }
+    public virtual IEnumerator ZigZagRoutine(float zigZagRate)
+    {
+        while (true)
+        {
+            horizontalDirection = -horizontalDirection;
+            yield return new WaitForSeconds(zigZagRate);
         }
     }
 }

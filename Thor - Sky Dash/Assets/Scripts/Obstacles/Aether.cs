@@ -3,39 +3,46 @@ using UnityEngine;
 
 public class Aether : Obstacle
 {
-    private static float lastSpawnPosition;
+    private static float previousSpawnPosition;
     private float currentSpawnPosition;
-    private int direction;
 
-    private void Start()
+    private void Awake()
     {
         do
         {
-            currentSpawnPosition = UnityEngine.Random.Range(-3f, 3f);
+            currentSpawnPosition = UnityEngine.Random.Range(-2.5f, 2.5f);
         }
-        while (Mathf.Abs(lastSpawnPosition - currentSpawnPosition) > 4.5f);
-        lastSpawnPosition = currentSpawnPosition;
+        while (Mathf.Abs(previousSpawnPosition - currentSpawnPosition) < 1.4f);
+        previousSpawnPosition = currentSpawnPosition;
     }
 
     public override void Move()
     {
-        float changeY = -gameSpeed * verticalSpeed * Time.deltaTime;
-        if (transform.position.y > 4f)
+        if (transform.position.y > 2.4f)
         {
-            transform.position += Vector3.up * changeY;
+            transform.position += Vector3.up * DeltaY();
+        }
+        else if (transform.position.y < -10f)
+        {
+            Destroy(gameObject);
         }
         else
         {
-            if (Mathf.Abs(currentSpawnPosition - transform.position.x) < 0.1f)
-            {
-                direction = 0;
-            }
-            else
-            {
-                direction = currentSpawnPosition > transform.position.x ? 1 : -1;
-            }
-            float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
-            transform.position += new Vector3(changeX, changeY, 0);
+            transform.position += new Vector3(DeltaX(), DeltaY(), 0);
+        }
+    }
+
+    public override float DeltaX(float constant = 1)
+    {
+        if (Mathf.Abs(currentSpawnPosition - transform.position.x) < 0.1f)
+        {
+            horizontalDirection = 0;
+            return 0f;
+        }
+        else
+        {
+            horizontalDirection = currentSpawnPosition > transform.position.x ? 1 : -1;
+            return constant * gameSpeed * horizontalSpeed * horizontalDirection * Time.deltaTime;
         }
     }
 }

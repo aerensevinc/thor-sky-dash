@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class FlyingSkeleton : Obstacle
 {
-    private int direction = 1;
     public override void Move()
     {
         float thor_x = GameManager.instance.Thor.transform.position.x;
         if (Mathf.Abs(transform.position.x - thor_x) < 0.1f)
         {
-            direction = 0;
+            horizontalDirection = 0;
         }
         else
         {
-            direction = thor_x > transform.position.x ? 1 : -1;
+            horizontalDirection = thor_x > transform.position.x ? 1 : -1;
         }
-        float changeX = gameSpeed * horizontalSpeed * direction * Time.deltaTime;
-        float changeY = -gameSpeed * verticalSpeed * Time.deltaTime;
-        transform.position += new Vector3(changeX, changeY, 0);
+        transform.position += new Vector3(DeltaX(), DeltaY(), 0);
     }
 }
