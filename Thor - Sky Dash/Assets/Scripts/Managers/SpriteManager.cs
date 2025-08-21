@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
+using Unity.VisualScripting;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class SpriteManager : MonoBehaviour
@@ -8,6 +11,11 @@ public class SpriteManager : MonoBehaviour
     public List<SpritePacket> spriteList;
     [HideInInspector]
     public SpritePacket currentSprite;
+
+    public static void ChangeSprite(SpriteName spriteName)
+    {
+        instance.currentSprite = instance.spriteList[(int)spriteName];
+    }
 
     private void Awake()
     {
@@ -32,4 +40,13 @@ public class SpritePacket
     public Sprite upLeft;
     public Sprite right;
     public Sprite left;
+}
+
+public enum SpriteName
+{
+    normal = 0,
+    lokified = 1,
+    invincible = 2,
+    fast = 3,
+    dead = 4,
 }

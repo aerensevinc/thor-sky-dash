@@ -59,7 +59,7 @@ public abstract class SpawnerBoss : Boss
     {
         float timer = 0f;
         isSpawning = true;
-        while (timer < spawnDuration)
+        while (timer < spawnDuration && !GameManager.instance.gameOver)
         {
             Instantiate(spawnedObject, SpawnPosition(), quaternion.identity);
             yield return new WaitForSeconds(spawnRate);

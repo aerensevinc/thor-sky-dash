@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject Thor;
     public SpriteRenderer thorSprite;
-    public TMP_Text pointText;
-    public TMP_Text coinText;
+    [HideInInspector]
+    public int highestScore;
     [HideInInspector]
     public int coinCount;
     [HideInInspector]
@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public bool gameOver;
     [HideInInspector]
     public bool isThorInvincible;
+    [HideInInspector]
+    public bool isOnCoolDown;
 
     private void Awake()
     {
@@ -47,16 +49,29 @@ public class GameManager : MonoBehaviour
         gameStarted = false;
         gameOver = false;
         isThorInvincible = false;
+        isOnCoolDown = false;
+        highestScore = PlayerPrefs.GetInt("HighestScore", 0);
     }
 
     private void Update()
     {
-        coinText.text = $"Coins: {coinCount}";
-        pointText.text = $"{points}";
-        if (health <= 0)
+        if (health <= 0 && !gameOver)
         {
             gameOver = true;
+            gameSpeed = 0;
+            if (points > highestScore)
+            {
+                ChangeHighestScore(points);
+                highestScore = points;
+            }
+            UIManager.instance.ActivateGameOver(highestScore);
         }
+    }
+
+    private void ChangeHighestScore(int score)
+    {
+        PlayerPrefs.SetInt("HighestScore", score);
+        PlayerPrefs.Save();
     }
 
     private IEnumerator GameSpeedRoutine()
@@ -70,10 +85,10 @@ public class GameManager : MonoBehaviour
 
     public void ChangeGameSpeed(float intensity, float duration)
     {
-        StartCoroutine(SpeedChangeRoutine(intensity, duration));
+        StartCoroutine(ChangeSpeedRoutine(intensity, duration));
     }
 
-    private IEnumerator SpeedChangeRoutine(float intensity, float duration)
+    private IEnumerator ChangeSpeedRoutine(float intensity, float duration)
     {
         gameSpeed *= intensity;
         yield return new WaitForSeconds(duration);
@@ -87,10 +102,24 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator InvincibleRoutine(float duration)
     {
-        thorSprite.color = Color.cyan;
         isThorInvincible = true;
+        thorSprite.color = Color.cyan;
         yield return new WaitForSeconds(duration);
         isThorInvincible = false;
+        thorSprite.color = Color.white;
+    }
+
+    public void StartCoolDown(float duration)
+    {
+        StartCoroutine(CoolDownRoutine(duration));
+    }
+
+    private IEnumerator CoolDownRoutine(float duration)
+    {
+        isOnCoolDown = true;
+        thorSprite.color = Color.red;
+        yield return new WaitForSeconds(duration);
+        isOnCoolDown = false;
         thorSprite.color = Color.white;
     }
 }

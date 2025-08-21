@@ -16,10 +16,10 @@ public abstract class Obstacle : Interactable
             gameManager.points += pointsOnceDestroyed;
             Destroy(gameObject);
         }
-        else
+        else if(!gameManager.isOnCoolDown)
         {
             gameManager.health--;
-            Destroy(gameObject);
+            gameManager.StartCoolDown(1.5f);
         }
     }
     public virtual IEnumerator ZigZagRoutine(float zigZagRate)

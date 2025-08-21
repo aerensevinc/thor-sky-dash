@@ -3,13 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public void PlayGame()
+    public string sceneName;
+
+    public void GoToScene()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(sceneName);
     }
+
     public void ExitGame()
     {
-        Debug.Log("Game exit.");
+        Debug.Log("Exit game.");
         Application.Quit();
     }
 }

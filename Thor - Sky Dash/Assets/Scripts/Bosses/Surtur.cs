@@ -6,12 +6,12 @@ public class Surtur : SpawnerBoss
 {
     private static float previousFireball_X;
     private float surturX;
+    
     private void Start()
     {
         isSpawning = false;
         spawningOver = false;
         surturX = UnityEngine.Random.Range(-2f, 2f);
-        Debug.Log($"surturs position is: {surturX}");
     }
 
     public override void MoveWhileExit()

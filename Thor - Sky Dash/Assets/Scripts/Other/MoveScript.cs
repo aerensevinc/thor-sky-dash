@@ -24,8 +24,17 @@ public class MoveScript : MonoBehaviour
         StartCoroutine(OpeningFlightRoutine());
     }
 
+    private void Update()
+    {
+        transform.rotation = UnityEngine.Quaternion.Euler(0, 0, 0);
+    }
+
     private void FixedUpdate()
     {
+        if (GameManager.instance.gameStarted)
+        {
+            transform.position = new Vector3(transform.position.x, y_position, 0);
+        }
         Vector3 deltaX = movement * moveSpeed * Time.deltaTime * Vector3.right;
         if (movement > 0)
         {
@@ -60,8 +69,7 @@ public class MoveScript : MonoBehaviour
 
     private void Move(InputAction.CallbackContext context)
     {
-        if (GameManager.instance.gameStarted)
-        /*&& !GameManager.instance.gameOver)*/
+        if (GameManager.instance.gameStarted && !GameManager.instance.gameOver)
         {
             movement = context.ReadValue<float>();
             if (isReverse)

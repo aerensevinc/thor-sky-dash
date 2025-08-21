@@ -17,36 +17,39 @@ public class SpawnManager : MonoBehaviour
     public List<SpawnableEntry> obstacleList, powerUpList, bossList;
     private Coroutine obsRoutine, powRoutine;
     private float lastSpawnPosition;
+
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
         }
         instance = this;
     }
+
     private void Start()
     {
         lastSpawnPosition = 0;
         StartSpawning();
         StartCoroutine(BossSpawnRoutine());
     }
+    
     public void StartSpawning()
     {
-        Debug.Log("starting spawning!");
         obsRoutine = StartCoroutine(SpawnRoutine(obstacleList, obstacleSpawnRate));
         powRoutine = StartCoroutine(SpawnRoutine(powerUpList, powerUpSpawnRate));
     }
+
     public void StopSpawning()
     {
-        Debug.Log("stoping spawning");
         StopCoroutine(obsRoutine);
         StopCoroutine(powRoutine);
     }
+
     private IEnumerator SpawnRoutine(List<SpawnableEntry> list, float spawnRate)
     {
-        while (true)
+        while (!GameManager.instance.gameOver)
         {
             float xPosition;
             while (true)
@@ -61,15 +64,17 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(spawnRate);
         }
     }
+
     private IEnumerator BossSpawnRoutine()
     {
-        while (true)
+        while (!GameManager.instance.gameOver)
         {
             yield return new WaitForSeconds(bossSpawnRate);
             GameObject currentBoss = GetRandomInList(bossList);
             Instantiate(currentBoss, UnityEngine.Vector3.up * 10.5f, quaternion.identity);
         }
     }
+
     private GameObject GetRandomInList(List<SpawnableEntry> list)
     {
         float counter = 0f;

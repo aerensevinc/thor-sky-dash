@@ -7,7 +7,7 @@ public class Loki : SpawnerBoss
     public override void DoBeforeSpawn()
     {
         GameManager.instance.Thor.GetComponent<MoveScript>().ReverseControls();
-        SpriteManager.instance.currentSprite = SpriteManager.instance.spriteList[1];
+        SpriteManager.ChangeSprite(SpriteName.lokified);
     }
 
     public override void MoveWhileSpawning()
@@ -34,7 +34,7 @@ public class Loki : SpawnerBoss
         if (gameManager != null)
         {
             gameManager.Thor.GetComponent<MoveScript>().UnReverseControls();
-            SpriteManager.instance.currentSprite = SpriteManager.instance.spriteList[0];
+            SpriteManager.ChangeSprite(SpriteName.normal);
         }
     }
 }
