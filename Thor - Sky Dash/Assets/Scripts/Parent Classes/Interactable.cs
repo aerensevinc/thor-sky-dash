@@ -23,14 +23,14 @@ public abstract class Interactable : MonoBehaviour
         transform.position += new Vector3(DeltaX(), DeltaY(), 0);
     }
 
-    public virtual float DeltaX(float constant = 1)
+    public virtual float DeltaX()
     {
-        return constant * gameSpeed * horizontalSpeed * horizontalDirection * Time.deltaTime;
+        return gameSpeed * horizontalSpeed * horizontalDirection * Time.deltaTime;
     }
     
-    public virtual float DeltaY(float constant = 1)
+    public virtual float DeltaY()
     {
-        return -constant * gameSpeed * verticalSpeed * Time.deltaTime;
+        return -gameSpeed * verticalSpeed * Time.deltaTime;
     }
     
     public abstract void Interact();

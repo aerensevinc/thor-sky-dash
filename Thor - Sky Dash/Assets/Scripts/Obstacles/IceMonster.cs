@@ -32,9 +32,9 @@ public class IceMonster : Boss
         }
         transform.position += new Vector3(DeltaX(), DeltaY(), 0);
     }
-    public override float DeltaY(float constant = 1)
+    public override float DeltaY()
     {
-        return isSpawning ? 0 : - constant * gameSpeed * verticalSpeed * Time.deltaTime;
+        return isSpawning ? 0 : -gameSpeed * verticalSpeed * Time.deltaTime;
     }
 
     private IEnumerator SpawnRoutine()

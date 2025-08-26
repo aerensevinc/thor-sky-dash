@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,11 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject Thor;
     public SpriteRenderer thorSprite;
     [HideInInspector]
-    public int highestScore;
+    public int highScore;
     [HideInInspector]
     public int coinCount;
     [HideInInspector]
-    public int points;
+    public int score;
     [HideInInspector]
     public int health;
     public int startHealth;
@@ -21,9 +22,7 @@ public class GameManager : MonoBehaviour
     public float gameSpeedConstant;
     public float gameSpeedChangeRate;
     [HideInInspector]
-    public bool gameStarted;
-    [HideInInspector]
-    public bool gameOver;
+    public GameState state;
     [HideInInspector]
     public bool isThorInvincible;
     [HideInInspector]
@@ -44,34 +43,83 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameSpeedRoutine());
         thorSprite = Thor.GetComponent<SpriteRenderer>();
         coinCount = 0;
-        points = 0;
+        score = 0;
         health = startHealth;
-        gameStarted = false;
-        gameOver = false;
+        state = GameState.PreGameStart;
         isThorInvincible = false;
         isOnCoolDown = false;
-        highestScore = PlayerPrefs.GetInt("HighestScore", 0);
+        highScore = PlayerPrefs.GetInt(PlayerPrefsKeys.highScore, 0);
     }
 
     private void Update()
     {
-        if (health <= 0 && !gameOver)
+        switch (state)
         {
-            gameOver = true;
-            gameSpeed = 0;
-            if (points > highestScore)
-            {
-                ChangeHighestScore(points);
-                highestScore = points;
-            }
-            UIManager.instance.ActivateGameOver(highestScore);
+            case GameState.GameActive:
+                if (health <= 0)
+                {
+                    state = GameState.PreGameOver;
+                }
+                break;
+
+            case GameState.PreGameOver:
+                GameOver();
+                break;
+
+            case GameState.GameOver:
+                gameSpeed = 0;
+                break;
         }
     }
 
-    private void ChangeHighestScore(int score)
+    public bool IsGameOver()
     {
-        PlayerPrefs.SetInt("HighestScore", score);
+        return state == GameState.GameOver;
+    }
+
+    public bool IsGameActive()
+    {
+        return state == GameState.GameActive;
+    }
+
+    public void ActivateGame()
+    {
+        state = GameState.GameActive;
+    }
+
+    public void GameOver()
+    {
+        if (score > highScore)
+        {
+            ChangeHighScore(score);
+            highScore = score;
+        }
+        gameSpeed = 0;
+        state = GameState.GameOver;
+        AddCoinsToAccount(coinCount);
+        UIManager.instance.ActivateGameOver(highScore);
+    }
+
+    private void ChangeHighScore(int score)
+    {
+        PlayerPrefs.SetInt(PlayerPrefsKeys.highScore, score);
         PlayerPrefs.Save();
+    }
+
+    private int AddCoinsToAccount(int coinCount)
+    {
+        int prevCoinCount = PlayerPrefs.GetInt(PlayerPrefsKeys.coinCount, 0);
+        int newCoinCount = prevCoinCount + coinCount;
+        if (newCoinCount < 0)
+        {
+            return -1;
+        }
+        else
+        {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.coinCount, newCoinCount);
+            PlayerPrefs.Save();
+            return newCoinCount;
+        }
     }
 
     private IEnumerator GameSpeedRoutine()
@@ -90,9 +138,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ChangeSpeedRoutine(float intensity, float duration)
     {
+        thorSprite.color = Color.softYellow;
         gameSpeed *= intensity;
         yield return new WaitForSeconds(duration);
         gameSpeed /= intensity;
+        thorSprite.color = Color.white;
     }
 
     public void MakeThorInvincible(float duration)
@@ -102,10 +152,22 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator InvincibleRoutine(float duration)
     {
+        StartCoroutine(ChangeColorRoutine(duration));
         isThorInvincible = true;
-        thorSprite.color = Color.cyan;
         yield return new WaitForSeconds(duration);
         isThorInvincible = false;
+    }
+
+    private IEnumerator ChangeColorRoutine(float duration)
+    {
+        float timer = 0f;
+        while (timer < duration)
+        {
+            Color randomColor = new Color(Random.value, Random.value, Random.value);
+            thorSprite.color = randomColor;
+            yield return new WaitForSeconds(0.2f);
+            timer += 0.2f;
+        }
         thorSprite.color = Color.white;
     }
 
@@ -120,6 +182,25 @@ public class GameManager : MonoBehaviour
         thorSprite.color = Color.red;
         yield return new WaitForSeconds(duration);
         isOnCoolDown = false;
-        thorSprite.color = Color.white;
+        if (IsGameActive())
+        {
+            thorSprite.color = Color.white;
+        }
     }
+}
+
+
+public enum GameState
+{
+    PreGameStart,
+    GameActive,
+    PreGameOver,
+    GameOver,
+}
+
+
+public class PlayerPrefsKeys
+{
+    public const string highScore = "HighScore";
+    public const string coinCount = "CoinCount";
 }

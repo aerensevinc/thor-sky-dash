@@ -13,7 +13,6 @@ public class SpawnManager : MonoBehaviour
     public float bossSpawnRate;
     public float obstacleSpawnRate;
     public float powerUpSpawnRate;
-    public float x_limit;
     public List<SpawnableEntry> obstacleList, powerUpList, bossList;
     private Coroutine obsRoutine, powRoutine;
     private float lastSpawnPosition;
@@ -49,12 +48,13 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnRoutine(List<SpawnableEntry> list, float spawnRate)
     {
-        while (!GameManager.instance.gameOver)
+        yield return new WaitUntil(() => GameManager.instance.IsGameActive());
+        while (GameManager.instance.IsGameActive())
         {
             float xPosition;
             while (true)
             {
-                xPosition = UnityEngine.Random.Range(-x_limit, x_limit);
+                xPosition = UnityEngine.Random.Range(-3f, 3f);
                 if (Mathf.Abs(xPosition - lastSpawnPosition) > 1f) break;
             }
             lastSpawnPosition = xPosition;
@@ -67,7 +67,8 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator BossSpawnRoutine()
     {
-        while (!GameManager.instance.gameOver)
+        yield return new WaitUntil(() => GameManager.instance.IsGameActive());
+        while (GameManager.instance.IsGameActive())
         {
             yield return new WaitForSeconds(bossSpawnRate);
             GameObject currentBoss = GetRandomInList(bossList);

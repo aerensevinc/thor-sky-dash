@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    public GameObject gameOverPanel;
     public string sceneName;
 
     public void GoToScene()

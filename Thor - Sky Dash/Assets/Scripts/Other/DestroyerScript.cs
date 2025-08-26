@@ -9,7 +9,7 @@ public class DestroyerScript : MonoBehaviour
         Obstacle obstacle = other.GetComponentInParent<Obstacle>();
         if (obstacle != null)
         {
-            GameManager.instance.points += obstacle.pointsOnceDestroyed;
+            GameManager.instance.score += obstacle.pointsOnceDestroyed;
         }
         Destroy(other);
     }

@@ -8,9 +8,10 @@ public class LightningBolt : Interactable
     {
         GameObject other = collision.gameObject;
         Obstacle obstacle = other.GetComponentInParent<Obstacle>();
-        if (obstacle != null)
+        Boss boss = other.GetComponentInParent<Boss>();
+        if (obstacle != null && boss == null)
         {
-            GameManager.instance.points += obstacle.pointsOnceDestroyed;
+            GameManager.instance.score += obstacle.pointsOnceDestroyed;
             Destroy(other);
             Destroy(gameObject);
         }

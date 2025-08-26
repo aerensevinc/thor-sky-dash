@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text inGamePointText;
     public TMP_Text inGameCoinText;
     public TMP_Text inGameHealthText;
-    public TMP_Text finalPointText;
+    public TMP_Text finalScoreText;
     public TMP_Text finalCoinText;
     public TMP_Text highestScoreText;
     private GameManager gameManager;
@@ -32,19 +32,19 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (!gameManager.gameOver)
+        if (!gameManager.IsGameOver())
         {
-            inGamePointText.text = $"Points: {gameManager.points}";
-            inGameCoinText.text = $"Coins: {gameManager.coinCount}";
-            inGameHealthText.text = $"Health: {gameManager.health}";
+            inGamePointText.text = $"Score: {gameManager.score}";
+            inGameCoinText.text = $"{gameManager.coinCount}";
+            inGameHealthText.text = $"{gameManager.health}";
         }
     }
 
-    public void ActivateGameOver(int highestScore)
+    public void ActivateGameOver(int highScore)
     {
         gameOverPanel.SetActive(true);
-        finalPointText.text = $"Points: {gameManager.points}";
-        finalCoinText.text = $"Coins: {gameManager.coinCount}";
-        highestScoreText.text = $"Highest Score: {highestScore}";
+        finalScoreText.text = $"Score: {gameManager.score}";
+        finalCoinText.text = $"+{gameManager.coinCount}";
+        highestScoreText.text = $"High Score: {highScore}";
     }
 }

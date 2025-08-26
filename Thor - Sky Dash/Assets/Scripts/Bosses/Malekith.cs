@@ -22,8 +22,7 @@ public class Malekith : SpawnerBoss
     {
         float timer = 0f;
         isSpawning = true;
-        yield return new WaitForSeconds(4);
-        while (timer < spawnDuration && !GameManager.instance.gameOver)
+        while (timer < spawnDuration)
         {
             Instantiate(spawnedObject, Vector3.up * 10, quaternion.identity);
             yield return new WaitForSeconds(spawnRate);

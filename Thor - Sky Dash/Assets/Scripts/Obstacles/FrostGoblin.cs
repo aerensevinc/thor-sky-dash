@@ -10,6 +10,7 @@ public class FrostGoblin : Obstacle
     {
         horizontalDirection = transform.position.x > 3f ? -1 : 1;
     }
+    
     public override void Move()
     {
         transform.position += new Vector3(DeltaX(), DeltaY(), 0);

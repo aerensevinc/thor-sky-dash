@@ -25,7 +25,6 @@ public class Executioner : Boss
         switch (state)
         {
             case MovementState.Entering:
-                Debug.Log("entering!");
                 if (Mathf.Abs(transform.position.y - yPosition) < 0.1f || transform.position.y > yPosition)
                 {
                     transform.position += Vector3.up * DeltaY();
@@ -72,7 +71,7 @@ public class Executioner : Boss
                 Debug.Log("comin down");
                 if (transform.position.y > -8.5f)
                 {
-                    transform.position += Vector3.up * DeltaY(2);
+                    transform.position += Vector3.up * 2 * DeltaY();
                     break;
                 }
                 else
@@ -85,7 +84,7 @@ public class Executioner : Boss
                 Debug.Log("cumoin up");
                 if (transform.position.y < yPosition)
                 {
-                    transform.position += Vector3.up * DeltaY(-2);
+                    transform.position += -Vector3.up * 2 * DeltaY();
                     break;
                 }
                 else
@@ -97,7 +96,7 @@ public class Executioner : Boss
 
             case MovementState.Exiting:
                 Debug.Log("buee");
-                transform.position += Vector3.up * DeltaY(2);
+                transform.position += Vector3.up * 2 * DeltaY();
                 break;
         }
     }

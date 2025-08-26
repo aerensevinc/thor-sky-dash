@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: b1cac187b7145f04ea378f9890b7a938
+guid: 7aa2ac6be7fa69d4da23fae201d7d08b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4028761618479554801
-    second: lokified_thor_left_0
+      213: -6602826268409082393
+    second: game_logo_0
   - first:
-      213: 3911089218892199590
-    second: lokified_thor_left_1
-  - first:
-      213: -6903165805997400264
-    second: lokified_thor_left_2
+      213: 2309035245415844612
+    second: game_logo_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -132,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lokified_thor_left_0
+      name: game_logo_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 0
-        width: 999
-        height: 1019
+        x: 96
+        y: 567
+        width: 49
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,20 +144,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f0f5ccd37a6f618c0800000000000000
-      internalID: -4028761618479554801
+      spriteID: 7edcbddfd7c0e54a0800000000000000
+      internalID: -6602826268409082393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lokified_thor_left_1
+      name: game_logo_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 615
-        width: 111
-        height: 173
+        x: 99
+        y: 119
+        width: 825
+        height: 802
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,30 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a6fde83ceaf64630800000000000000
-      internalID: 3911089218892199590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lokified_thor_left_2
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 52
-        width: 257
-        height: 381
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83fd6e326470330a0800000000000000
-      internalID: -6903165805997400264
+      spriteID: 40b4ed862575b0020800000000000000
+      internalID: 2309035245415844612
       vertices: []
       indices: 
       edges: []
@@ -211,9 +186,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lokified_thor_left_0: -4028761618479554801
-      lokified_thor_left_1: 3911089218892199590
-      lokified_thor_left_2: -6903165805997400264
+      game_logo_0: -6602826268409082393
+      game_logo_1: 2309035245415844612
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

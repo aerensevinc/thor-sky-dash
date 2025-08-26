@@ -150,7 +150,7 @@ MonoBehaviour:
   verticalSpeed: 1.5
   horizontalSpeed: 1.2
   pointsOnceDestroyed: 40
-  waitTime: 3
+  waitTime: 4
   yPosition: 1
-  minNumberOfAttacks: 5
-  maxNumberOfAttacks: 7
+  minNumberOfAttacks: 3
+  maxNumberOfAttacks: 5

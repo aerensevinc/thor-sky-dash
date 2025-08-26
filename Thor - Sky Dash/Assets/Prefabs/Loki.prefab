@@ -153,5 +153,5 @@ MonoBehaviour:
   waitTime: 4
   yPosition: 3
   spawnedObject: {fileID: 3877156739724905444, guid: 2d38885ed8e704648a1d7ab48a293d1e, type: 3}
-  spawnDuration: 16
-  spawnRate: 1.5
+  spawnDuration: 14
+  spawnRate: 1.2

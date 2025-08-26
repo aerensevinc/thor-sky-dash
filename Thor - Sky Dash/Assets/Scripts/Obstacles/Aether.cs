@@ -32,7 +32,7 @@ public class Aether : Obstacle
         }
     }
 
-    public override float DeltaX(float constant = 1)
+    public override float DeltaX()
     {
         if (Mathf.Abs(currentSpawnPosition - transform.position.x) < 0.1f)
         {
@@ -42,7 +42,7 @@ public class Aether : Obstacle
         else
         {
             horizontalDirection = currentSpawnPosition > transform.position.x ? 1 : -1;
-            return constant * gameSpeed * horizontalSpeed * horizontalDirection * Time.deltaTime;
+            return gameSpeed * horizontalSpeed * horizontalDirection * Time.deltaTime;
         }
     }
 }

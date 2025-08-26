@@ -7,7 +7,7 @@ public class Loki : SpawnerBoss
     public override void DoBeforeSpawn()
     {
         GameManager.instance.Thor.GetComponent<MoveScript>().ReverseControls();
-        SpriteManager.ChangeSprite(SpriteName.lokified);
+        GameManager.instance.thorSprite.color = Color.limeGreen;
     }
 
     public override void MoveWhileSpawning()
@@ -25,7 +25,7 @@ public class Loki : SpawnerBoss
         {
             horizontalDirection = -horizontalDirection;
         }
-        transform.position += new Vector3(DeltaX(0.4f), DeltaY(), 0);
+        transform.position += new Vector3(0.5f * DeltaX(), DeltaY(), 0);
     }
 
     protected override void WhenDestroyed()
@@ -34,7 +34,7 @@ public class Loki : SpawnerBoss
         if (gameManager != null)
         {
             gameManager.Thor.GetComponent<MoveScript>().UnReverseControls();
-            SpriteManager.ChangeSprite(SpriteName.normal);
+            gameManager.thorSprite.color = Color.white;
         }
     }
 }

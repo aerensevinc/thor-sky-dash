@@ -150,7 +150,7 @@ MonoBehaviour:
   verticalSpeed: 0.7
   horizontalSpeed: 0.5
   pointsOnceDestroyed: 50
-  waitTime: 2
+  waitTime: 3
   yPosition: 2.4
   spawnedObject: {fileID: 515662289769237172, guid: 3718a7439e6f198408c233ef13dfa703, type: 3}
   spawnDuration: 20

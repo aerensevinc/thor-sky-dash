@@ -17,7 +17,7 @@ public class Boss : Obstacle
         WhenDestroyed();
         GameManager gameManager = GameManager.instance;
         SpawnManager spawnManager = SpawnManager.instance;
-        if (gameManager != null && spawnManager != null && !gameManager.gameOver)
+        if (gameManager && spawnManager && gameManager.IsGameActive())
         {
             spawnManager.StartSpawning();
         }

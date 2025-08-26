@@ -4,9 +4,10 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public TMP_Text highScoreText;
-
+    public TMP_Text totalCoinCount;
     private void Start()
     {
-        highScoreText.text = $"Highest Score: {PlayerPrefs.GetInt("HighestScore", 0)}";
+        highScoreText.text = $"High Score: {PlayerPrefs.GetInt(PlayerPrefsKeys.highScore, 0)}";
+        totalCoinCount.text = $"{PlayerPrefs.GetInt(PlayerPrefsKeys.coinCount, 0)}";
     }
 }

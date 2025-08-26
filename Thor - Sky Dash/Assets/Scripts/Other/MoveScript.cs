@@ -7,9 +7,10 @@ using UnityEngine.InputSystem;
 
 public class MoveScript : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer thorSprite;
+    public Sprite[] sprites;
     public float moveSpeed;
-    public float y_position;
+    public float yPosition;
     private bool isMovingLeft;
     private bool isReverse;
     private float movement;
@@ -19,8 +20,8 @@ public class MoveScript : MonoBehaviour
         isMovingLeft = false;
         isReverse = false;
         transform.position = new Vector3(0, -8, 0);
-        spriteRenderer.sprite = SpriteManager.instance.currentSprite.upRight;
-        spriteRenderer.color = Color.white;
+        thorSprite.sprite = sprites[(int)SpritePose.upRight];
+        thorSprite.color = Color.white;
         StartCoroutine(OpeningFlightRoutine());
     }
 
@@ -31,14 +32,14 @@ public class MoveScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.gameStarted)
+        if (GameManager.instance.IsGameActive())
         {
-            transform.position = new Vector3(transform.position.x, y_position, 0);
+            transform.position = new Vector3(transform.position.x, yPosition, 0);
         }
         Vector3 deltaX = movement * moveSpeed * Time.deltaTime * Vector3.right;
         if (movement > 0)
         {
-            spriteRenderer.sprite = SpriteManager.instance.currentSprite.right;
+            thorSprite.sprite = sprites[(int)SpritePose.right];
             isMovingLeft = false;
             if (transform.position.x < 3.2f)
             {
@@ -47,7 +48,7 @@ public class MoveScript : MonoBehaviour
         }
         else if (movement < 0)
         {
-            spriteRenderer.sprite = SpriteManager.instance.currentSprite.left;
+            thorSprite.sprite = sprites[(int)SpritePose.left];
             isMovingLeft = true;
             if (transform.position.x > -3.2f)
             {
@@ -58,18 +59,18 @@ public class MoveScript : MonoBehaviour
         {
             if (isMovingLeft)
             {
-                spriteRenderer.sprite = SpriteManager.instance.currentSprite.upLeft;
+                thorSprite.sprite = sprites[(int)SpritePose.upLeft];
             }
             else
             {
-                spriteRenderer.sprite = SpriteManager.instance.currentSprite.upRight;
+                thorSprite.sprite = sprites[(int)SpritePose.upRight];
             }
         }
     }
 
     private void Move(InputAction.CallbackContext context)
     {
-        if (GameManager.instance.gameStarted && !GameManager.instance.gameOver)
+        if (GameManager.instance.IsGameActive())
         {
             movement = context.ReadValue<float>();
             if (isReverse)
@@ -91,8 +92,10 @@ public class MoveScript : MonoBehaviour
     private IEnumerator ThorFasterRoutine(float intensity, float duration)
     {
         moveSpeed *= intensity;
+        thorSprite.color = Color.yellowGreen;
         yield return new WaitForSeconds(duration);
         moveSpeed /= intensity;
+        thorSprite.color = Color.white;
     }
 
     public void ReverseControls()
@@ -107,11 +110,19 @@ public class MoveScript : MonoBehaviour
 
     private IEnumerator OpeningFlightRoutine()
     {
-        while (transform.position.y < y_position)
+        while (transform.position.y < yPosition)
         {
             transform.position += 2 * Time.deltaTime * Vector3.up;
             yield return null;
         }
-        GameManager.instance.gameStarted = true;
+        GameManager.instance.ActivateGame();
+    }
+
+    private enum SpritePose
+    {
+        upRight = 0,
+        upLeft = 1,
+        right = 2,
+        left = 3,
     }
 }
