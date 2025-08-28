@@ -16,10 +16,10 @@ public class ThorScript : MonoBehaviour
         GameManager.instance.thorSprite.color = Color.cyan;
         while (timer < spawnDuration)
         {
-            Vector3 spawnPosition = transform.position + Vector3.up * 1.2f;
-            Instantiate(lightningBolt, spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(spawnRate);
             timer += spawnRate;
+            Vector3 spawnPosition = transform.position + Vector3.up * 1.2f;
+            Instantiate(lightningBolt, spawnPosition, Quaternion.identity);
         }
         GameManager.instance.thorSprite.color = Color.white;
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5393095041095970304
+--- !u!1 &8585211434775771434
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4017234362128604708}
-  - component: {fileID: 3748063937684629221}
-  - component: {fileID: 2772365218440121263}
-  - component: {fileID: 7678204605316703762}
+  - component: {fileID: 5510946742259010171}
+  - component: {fileID: 8459665456241919046}
+  - component: {fileID: 6888123815186899846}
+  - component: {fileID: 3899378684544532913}
   m_Layer: 0
-  m_Name: Ice Spike
+  m_Name: GreenSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4017234362128604708
+--- !u!4 &5510946742259010171
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5393095041095970304}
+  m_GameObject: {fileID: 8585211434775771434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.21645, y: -0.94, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalPosition: {x: 0.07, y: -1.33, z: 0}
+  m_LocalScale: {x: 0.18, y: 0.18, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3748063937684629221
+--- !u!212 &8459665456241919046
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5393095041095970304}
+  m_GameObject: {fileID: 8585211434775771434}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -78,24 +78,24 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8794745339000910494, guid: e5f44b84c4b9b374fbe3b8e77fcac737, type: 3}
+  m_Sprite: {fileID: 3500237322659019866, guid: bf1783a9d3d01504e9262a012a659770, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.24, y: 10.24}
+  m_Size: {x: 3.6, y: 6.62}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2772365218440121263
-PolygonCollider2D:
+--- !u!61 &6888123815186899846
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5393095041095970304}
+  m_GameObject: {fileID: 8585211434775771434}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -123,48 +123,30 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.18825603, y: 0.0171144}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.59, y: 9.14}
-    newSize: {x: 10.24, y: 10.24}
+    oldSize: {x: 3.6, y: 6.62}
+    newSize: {x: 3.6, y: 6.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1.26, y: 3.25}
-      - {x: -1.56, y: 2.97}
-      - {x: -1.56, y: 1.41}
-      - {x: -1.54, y: 1.39}
-      - {x: -1.23, y: 0.66999996}
-      - {x: -1.1802325, y: 0.65}
-      - {x: -0.85999995, y: -0.69}
-      - {x: -0.84, y: -0.71}
-      - {x: -0.52, y: -2.21}
-      - {x: -0.5582822, y: -2.23}
-      - {x: -0.17999999, y: -3.1599998}
-      - {x: -0.16, y: -3.1799998}
-      - {x: 0.29182914, y: -3.1799996}
-      - {x: -0.11083585, y: -3.1799998}
-      - {x: 1.0610174, y: 0.29896384}
-      - {x: 1.61, y: 3.04}
-      - {x: 1.55, y: 3.25}
-  m_UseDelaunayMesh: 0
---- !u!114 &7678204605316703762
+  m_Size: {x: 3.2234879, y: 6.380401}
+  m_EdgeRadius: 0
+--- !u!114 &3899378684544532913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5393095041095970304}
+  m_GameObject: {fileID: 8585211434775771434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b95d6d00b71f3e541a67fd56f7805ce7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dd13bd924f913d468aa3752950e15db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalSpeed: 2.5
+  verticalSpeed: 2.2
   horizontalSpeed: 0
   pointsOnceDestroyed: 0

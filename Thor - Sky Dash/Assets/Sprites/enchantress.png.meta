@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e5f44b84c4b9b374fbe3b8e77fcac737
+guid: b6871ebc714f45a4888cd7b51ea73562
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8794745339000910494
-    second: ice_spike_0
+      213: -9064755741178973639
+    second: enchantress_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ice_spike_0
+      name: enchantress_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 5
-        width: 859
-        height: 914
+        x: 166
+        y: 24
+        width: 800
+        height: 958
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e92fb2d0a463d0a70800000000000000
-      internalID: 8794745339000910494
+      spriteID: 93238573ea4833280800000000000000
+      internalID: -9064755741178973639
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ice_spike_0: 8794745339000910494
+      enchantress_0: -9064755741178973639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e5f44b84c4b9b374fbe3b8e77fcac737
+guid: bf1783a9d3d01504e9262a012a659770
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8794745339000910494
-    second: ice_spike_0
+      213: 3500237322659019866
+    second: green_spell_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ice_spike_0
+      name: green_spell_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 5
-        width: 859
-        height: 914
+        x: 1
+        y: 34
+        width: 360
+        height: 662
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e92fb2d0a463d0a70800000000000000
-      internalID: 8794745339000910494
+      spriteID: a5cb7a6cc47539030800000000000000
+      internalID: 3500237322659019866
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ice_spike_0: 8794745339000910494
+      green_spell_0: 3500237322659019866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

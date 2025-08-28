@@ -1409,7 +1409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &489791038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2819,6 +2819,8 @@ MonoBehaviour:
     spawnWeight: 10
   - preFab: {fileID: 191671723688895092, guid: 70123d4c502e33b429230d2751c66d21, type: 3}
     spawnWeight: 6
+  - preFab: {fileID: 2852391439219703492, guid: 5a712507e607bc5418dbbd04bd5047a1, type: 3}
+    spawnWeight: 20
   powerUpList:
   - preFab: {fileID: 169519598546961196, guid: 750959ca2ebf6d74fab57902dc0147a9, type: 3}
     spawnWeight: 3
@@ -2833,18 +2835,18 @@ MonoBehaviour:
   - preFab: {fileID: 204975804325822410, guid: 52c749a59426f634698a9372e64b9267, type: 3}
     spawnWeight: 2
   bossList:
-  - preFab: {fileID: 2852391439219703492, guid: 5a712507e607bc5418dbbd04bd5047a1, type: 3}
-    spawnWeight: 0
   - preFab: {fileID: 4097665124953379941, guid: e3487a8155dd59c44a28e0e69898f621, type: 3}
-    spawnWeight: 0
+    spawnWeight: 1
   - preFab: {fileID: 8676787199888188604, guid: e6de6040aa9b06946a04d954235b16d7, type: 3}
-    spawnWeight: 0
+    spawnWeight: 1
   - preFab: {fileID: 7203113433738043480, guid: b00c1bd1ff687614693e192cbb4077f5, type: 3}
-    spawnWeight: 0
+    spawnWeight: 1
   - preFab: {fileID: 701919562732045123, guid: cf5e8cfdbc195734199bfe4cd8012faa, type: 3}
     spawnWeight: 1
   - preFab: {fileID: 2321177463972266061, guid: 1526613aba39585448123429c54a284e, type: 3}
-    spawnWeight: 0
+    spawnWeight: 1
+  - preFab: {fileID: 5763648509316680655, guid: 1ea9b1503c265ab4e832f67ffe854901, type: 3}
+    spawnWeight: 1
 --- !u!4 &2049499602
 Transform:
   m_ObjectHideFlags: 0
