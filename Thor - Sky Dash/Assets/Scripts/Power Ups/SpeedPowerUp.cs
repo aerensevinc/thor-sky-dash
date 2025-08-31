@@ -7,6 +7,7 @@ public class SpeedPowerUp : Interactable
     
     public override void Interact()
     {
+        AudioManager.instance.PlaySound(interactSound, true);
         GameManager.instance.Thor.GetComponent<MoveScript>().MakeThorFaster(intensity, duration);
         Destroy(gameObject);
     }

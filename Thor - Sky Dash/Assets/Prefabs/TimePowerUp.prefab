@@ -149,5 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: 1
   horizontalSpeed: 0
+  interactSound: powerUp
   powerUpIntensity: 2
   powerUpDuration: 5

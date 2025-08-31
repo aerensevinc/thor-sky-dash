@@ -8,6 +8,7 @@ public class TimePowerUp : Interactable
     
     public override void Interact()
     {
+        AudioManager.instance.PlaySound(interactSound, true);
         GameManager.instance.ChangeGameSpeed(1 / powerUpIntensity, powerUpDuration);
         Destroy(gameObject);
     }

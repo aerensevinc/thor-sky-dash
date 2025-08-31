@@ -139,3 +139,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: 1
   horizontalSpeed: 0
+  interactSound: health

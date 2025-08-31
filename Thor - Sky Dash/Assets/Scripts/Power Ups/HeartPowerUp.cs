@@ -6,5 +6,6 @@ public class HeartPowerUp : Interactable
     {
         GameManager.instance.health++;
         Destroy(gameObject);
+        AudioManager.instance.PlaySound(interactSound, true);
     }
 }

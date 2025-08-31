@@ -6,5 +6,6 @@ public class Coin : Interactable
     {
         GameManager.instance.coinCount++;
         Destroy(gameObject);
+        AudioManager.instance.PlaySound(interactSound, true);
     }
 }

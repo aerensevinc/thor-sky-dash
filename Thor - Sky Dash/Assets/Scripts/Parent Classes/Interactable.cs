@@ -7,6 +7,7 @@ public abstract class Interactable : MonoBehaviour
     public float horizontalSpeed;
     protected float gameSpeed;
     protected int horizontalDirection = 1;
+    public string interactSound;
 
     private void Update()
     {

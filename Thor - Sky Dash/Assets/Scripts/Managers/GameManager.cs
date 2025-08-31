@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.PlaySound("mainTheme", false);
         StartCoroutine(GameSpeedRoutine());
         thorSprite = Thor.GetComponent<SpriteRenderer>();
         coinCount = 0;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.PreGameOver:
+                AudioManager.instance.PlaySound("gameOver", false);
                 GameOver();
                 break;
 
@@ -134,6 +136,7 @@ public class GameManager : MonoBehaviour
     public void ChangeGameSpeed(float intensity, float duration)
     {
         StartCoroutine(ChangeSpeedRoutine(intensity, duration));
+        AudioManager.instance.SlowDownMusic(duration);
     }
 
     private IEnumerator ChangeSpeedRoutine(float intensity, float duration)

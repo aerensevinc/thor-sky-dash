@@ -11,6 +11,7 @@ public class LightningBolt : Interactable
         Boss boss = other.GetComponentInParent<Boss>();
         if (obstacle != null && boss == null)
         {
+            AudioManager.instance.PlaySound("crush", true);
             GameManager.instance.score += obstacle.pointsOnceDestroyed;
             Destroy(other);
             Destroy(gameObject);
