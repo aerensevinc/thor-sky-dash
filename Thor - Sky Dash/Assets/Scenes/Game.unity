@@ -2698,25 +2698,25 @@ MonoBehaviour:
   soundList:
   - key: mainTheme
     clip: {fileID: 8300000, guid: 14e0822374c21fb43aed1a10b5ba0d62, type: 3}
-    volume: 0.123
+    volume: 0.38
   - key: coinCollect
     clip: {fileID: 8300000, guid: 8dfc091a365b3db418ffbc10a63c6c24, type: 3}
-    volume: 0.374
+    volume: 0.67
   - key: health
     clip: {fileID: 8300000, guid: 7eaf75df5c751774ba8e290b6bebe2a6, type: 3}
-    volume: 0.41
+    volume: 0.48
   - key: powerUp
     clip: {fileID: 8300000, guid: 946e4b18c74659943bba1a8042f0f9ef, type: 3}
-    volume: 0.24
+    volume: 0.31
   - key: damage
     clip: {fileID: 8300000, guid: 0938902099c09a64d89614823c599da0, type: 3}
-    volume: 0.46
+    volume: 0.68
   - key: gameOver
     clip: {fileID: 8300000, guid: 78bb7af0dc6b8fe46a637fb07e93e1a5, type: 3}
-    volume: 0.41
+    volume: 0.85
   - key: crush
     clip: {fileID: 8300000, guid: d7ae9f0f643cc8642b10870702a278dc, type: 3}
-    volume: 0.41
+    volume: 0.57
   effectSource: {fileID: 1433739859}
   musicSource: {fileID: 1433739860}
 --- !u!4 &1433739858
@@ -3076,7 +3076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a503a75a678f24e8686f05f6e84f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossSpawnRate: 30
+  bossSpawnRate: 60
   obstacleSpawnRate: 4
   powerUpSpawnRate: 7
   obstacleList:
@@ -3096,17 +3096,17 @@ MonoBehaviour:
     spawnWeight: 3
   powerUpList:
   - preFab: {fileID: 169519598546961196, guid: 750959ca2ebf6d74fab57902dc0147a9, type: 3}
-    spawnWeight: 20
+    spawnWeight: 5
   - preFab: {fileID: 3094345178057033945, guid: 3679a1c0cb78eef41b72ae6a0f6aecf2, type: 3}
-    spawnWeight: 20
+    spawnWeight: 6
   - preFab: {fileID: 8020631168891517692, guid: d4047b7355eb9a4448656f1463ff4aab, type: 3}
-    spawnWeight: 20
+    spawnWeight: 8
   - preFab: {fileID: 6740272752370730926, guid: b75ae36ccbb090543aabe5f14c5fb032, type: 3}
-    spawnWeight: 50
+    spawnWeight: 10
   - preFab: {fileID: 923887152147271408, guid: dfba87c06ee532b4fbb6fa12f69d53ac, type: 3}
     spawnWeight: 35
   - preFab: {fileID: 204975804325822410, guid: 52c749a59426f634698a9372e64b9267, type: 3}
-    spawnWeight: 20
+    spawnWeight: 10
   bossList:
   - preFab: {fileID: 4097665124953379941, guid: e3487a8155dd59c44a28e0e69898f621, type: 3}
     spawnWeight: 1

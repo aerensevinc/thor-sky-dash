@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public GameObject gameOverPanel;
+    public GameObject panel;
     public string sceneName;
 
     public void GoToScene()
@@ -15,5 +15,15 @@ public class ButtonManager : MonoBehaviour
     {
         Debug.Log("Exit game.");
         Application.Quit();
+    }
+
+    public void ActivatePanel()
+    {
+        panel.SetActive(true);
+    }
+
+    public void DeactivatePanel()
+    {
+        panel.SetActive(false);
     }
 }

@@ -192,7 +192,6 @@ public class GameManager : MonoBehaviour
     }
 }
 
-
 public enum GameState
 {
     PreGameStart,
@@ -201,9 +200,10 @@ public enum GameState
     GameOver,
 }
 
-
 public class PlayerPrefsKeys
 {
     public const string highScore = "HighScore";
     public const string coinCount = "CoinCount";
+    public const string musicVol = "MusicVolume";
+    public const string effectsVol = "EffectsVolume";
 }
