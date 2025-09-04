@@ -17,6 +17,16 @@ public class LightningBolt : Interactable
             Destroy(gameObject);
         }
     }
+
+    private void Update()
+    {
+        gameSpeed = GameManager.instance.gameSpeed;
+        if (transform.position.y > 9f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public override void Interact()
     {
     }
