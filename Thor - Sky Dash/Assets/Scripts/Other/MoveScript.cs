@@ -1,9 +1,9 @@
-
 using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class MoveScript : MonoBehaviour
 {
@@ -92,16 +92,31 @@ public class MoveScript : MonoBehaviour
             return;
         }
 
-        var touch = Touchscreen.current.primaryTouch;
-        if (touch.press.isPressed)
+        var touches = Touchscreen.current.touches;
+        TouchControl lastTouch = null;
+        for (int i = touches.Count - 1; i >= 0; i--)
         {
-            movement = touch.position.ReadValue().x < Screen.width / 2f ? -1f : 1f;
+            var t = touches[i];
+            if (t.press.isPressed || t.press.wasReleasedThisFrame)
+            {
+                lastTouch = t;
+                break;
+            }
+        }
+        if (lastTouch == null)
+        {
+            return;
+        }
+
+        if (lastTouch.press.isPressed)
+        {
+            movement = lastTouch.position.ReadValue().x < Screen.width / 2f ? -1f : 1f;
             if (isReverse)
             {
                 movement = -movement;
             }
         }
-        else if (touch.press.wasReleasedThisFrame)
+        else if (lastTouch.press.wasReleasedThisFrame)
         {
             movement = 0f;
         }
