@@ -8,7 +8,7 @@ public class Boss : Obstacle
     
     private void Awake()
     {
-        SpawnManager.instance.StopSpawning();
+        SpawnManager.instance.isSpawningBoss = true;
         StartCoroutine(WaitRoutine());
     }
 
@@ -19,7 +19,7 @@ public class Boss : Obstacle
         SpawnManager spawnManager = SpawnManager.instance;
         if (gameManager && spawnManager && gameManager.IsGameActive())
         {
-            spawnManager.StartSpawning();
+            spawnManager.isSpawningBoss = false;
         }
     }
 

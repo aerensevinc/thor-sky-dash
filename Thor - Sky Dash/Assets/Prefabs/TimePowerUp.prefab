@@ -151,4 +151,4 @@ MonoBehaviour:
   horizontalSpeed: 0
   interactSound: powerUp
   powerUpIntensity: 2
-  powerUpDuration: 5
+  powerUpDuration: 3.2

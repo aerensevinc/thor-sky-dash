@@ -149,9 +149,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: 0.7
   horizontalSpeed: 0.8
-  pointsOnceDestroyed: 50
+  interactSound: 
+  pointsOnceDestroyed: 40
   waitTime: 3
   yPosition: 3
   spawnedObject: {fileID: 8585211434775771434, guid: 355d56e9bcc28c343ba1e5bfb3e7dc56, type: 3}
-  spawnDuration: 15
-  spawnRate: 0.8
+  spawnDuration: 20
+  spawnRate: 0.7

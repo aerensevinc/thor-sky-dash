@@ -68,7 +68,6 @@ public class Executioner : Boss
                 }
 
             case MovementState.ComingDown:
-                Debug.Log("comin down");
                 if (transform.position.y > -8.5f)
                 {
                     transform.position += Vector3.up * 2 * DeltaY();
@@ -81,7 +80,6 @@ public class Executioner : Boss
                 }
 
             case MovementState.ComingUp:
-                Debug.Log("cumoin up");
                 if (transform.position.y < yPosition)
                 {
                     transform.position += -Vector3.up * 2 * DeltaY();
@@ -95,7 +93,6 @@ public class Executioner : Boss
                 }
 
             case MovementState.Exiting:
-                Debug.Log("buee");
                 transform.position += Vector3.up * 2 * DeltaY();
                 break;
         }

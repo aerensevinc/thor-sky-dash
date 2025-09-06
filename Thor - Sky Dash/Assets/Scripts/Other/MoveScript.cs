@@ -28,6 +28,7 @@ public class MoveScript : MonoBehaviour
     private void Update()
     {
         transform.rotation = UnityEngine.Quaternion.Euler(0, 0, 0);
+        HandleTouchInput();
     }
 
     private void FixedUpdate()
@@ -81,6 +82,28 @@ public class MoveScript : MonoBehaviour
         else
         {
             movement = 0;
+        }
+    }
+
+    private void HandleTouchInput()
+    {
+        if (Touchscreen.current == null || !GameManager.instance.IsGameActive())
+        {
+            return;
+        }
+
+        var touch = Touchscreen.current.primaryTouch;
+        if (touch.press.isPressed)
+        {
+            movement = touch.position.ReadValue().x < Screen.width / 2f ? -1f : 1f;
+            if (isReverse)
+            {
+                movement = -movement;
+            }
+        }
+        else if (touch.press.wasReleasedThisFrame)
+        {
+            movement = 0f;
         }
     }
 

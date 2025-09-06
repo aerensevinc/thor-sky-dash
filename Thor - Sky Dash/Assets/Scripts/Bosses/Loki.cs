@@ -12,20 +12,30 @@ public class Loki : SpawnerBoss
 
     public override void MoveWhileSpawning()
     {
+        SpriteRenderer thorSprite = GameManager.instance.thorSprite;
         if (Mathf.Abs(transform.position.x) > 3f)
         {
             horizontalDirection = -horizontalDirection;
         }
         transform.position += Vector3.right * DeltaX();
+        if (thorSprite.color == Color.white)
+        {
+            thorSprite.color = Color.limeGreen;
+        }
     }
 
     public override void MoveWhileExit()
     {
-        if (Mathf.Abs(transform.position.x) > 2.8f)
+        SpriteRenderer thorSprite = GameManager.instance.thorSprite;
+        if (Mathf.Abs(transform.position.x) > 2.9f)
         {
             horizontalDirection = -horizontalDirection;
         }
-        transform.position += new Vector3(0.5f * DeltaX(), DeltaY(), 0);
+        transform.position += new Vector3(DeltaX(), DeltaY(), 0);
+        if (thorSprite.color == Color.white)
+        {
+            thorSprite.color = Color.limeGreen;
+        }
     }
 
     protected override void WhenDestroyed()

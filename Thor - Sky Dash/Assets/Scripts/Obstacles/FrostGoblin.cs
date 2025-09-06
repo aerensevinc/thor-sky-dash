@@ -1,7 +1,3 @@
-using System.Collections;
-using NUnit.Framework;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class FrostGoblin : Obstacle

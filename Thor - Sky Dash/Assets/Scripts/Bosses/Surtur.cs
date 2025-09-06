@@ -6,7 +6,7 @@ public class Surtur : SpawnerBoss
 {
     private static float previousFireball_X;
     private float surturX;
-    
+
     private void Start()
     {
         isSpawning = false;
@@ -39,4 +39,8 @@ public class Surtur : SpawnerBoss
         previousFireball_X = currentFireball_X;
         return new Vector3(currentFireball_X, 8.5f, 0);
     }
+
+    protected override void PlaySpawnSound()
+    {
+    } 
 }

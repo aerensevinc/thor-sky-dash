@@ -14,7 +14,8 @@ public class SpawnManager : MonoBehaviour
     public float obstacleSpawnRate;
     public float powerUpSpawnRate;
     public List<SpawnableEntry> obstacleList, powerUpList, bossList;
-    private Coroutine obsRoutine, powRoutine;
+    [HideInInspector]
+    public bool isSpawningBoss;
     private float lastSpawnPosition;
 
     private void Awake()
@@ -30,20 +31,10 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         lastSpawnPosition = 0;
-        StartSpawning();
+        isSpawningBoss = false;
+        StartCoroutine(SpawnRoutine(obstacleList, obstacleSpawnRate));
+        StartCoroutine(SpawnRoutine(powerUpList, powerUpSpawnRate));
         StartCoroutine(BossSpawnRoutine());
-    }
-    
-    public void StartSpawning()
-    {
-        obsRoutine = StartCoroutine(SpawnRoutine(obstacleList, obstacleSpawnRate));
-        powRoutine = StartCoroutine(SpawnRoutine(powerUpList, powerUpSpawnRate));
-    }
-
-    public void StopSpawning()
-    {
-        StopCoroutine(obsRoutine);
-        StopCoroutine(powRoutine);
     }
 
     private IEnumerator SpawnRoutine(List<SpawnableEntry> list, float spawnRate)
@@ -51,6 +42,7 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitUntil(() => GameManager.instance.IsGameActive());
         while (GameManager.instance.IsGameActive())
         {
+            yield return new WaitUntil(() => !isSpawningBoss);
             float xPosition;
             while (true)
             {
@@ -70,6 +62,7 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitUntil(() => GameManager.instance.IsGameActive());
         while (GameManager.instance.IsGameActive())
         {
+            yield return new WaitUntil(() => !isSpawningBoss);
             yield return new WaitForSeconds(bossSpawnRate);
             GameObject currentBoss = GetRandomInList(bossList);
             Instantiate(currentBoss, UnityEngine.Vector3.up * 10.5f, quaternion.identity);

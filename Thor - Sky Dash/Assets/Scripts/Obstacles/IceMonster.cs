@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using JetBrains.Annotations;
+using TMPro;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -29,9 +30,9 @@ public class IceMonster : Obstacle
 
     private IEnumerator SpawnRoutine()
     {
-        while (true)
+        while (GameManager.instance.IsGameActive() && transform.position.y > -7f)
         {
-            Instantiate(IceSpike, transform.position + Vector3.down, Quaternion.identity);
+            Instantiate(IceSpike, transform.position + 1.3f*Vector3.down, Quaternion.identity);
             yield return new WaitForSeconds(spawnRate);
         }
     }

@@ -149,5 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: 1.2
   horizontalSpeed: 0.4
+  interactSound: 
   pointsOnceDestroyed: 6
   zigZagRate: 1

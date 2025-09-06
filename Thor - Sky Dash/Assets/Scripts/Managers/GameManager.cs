@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOver:
+                thorSprite.color = Color.red;
                 gameSpeed = 0;
                 break;
         }

@@ -12,7 +12,7 @@ public class Aether : Obstacle
         {
             currentSpawnPosition = UnityEngine.Random.Range(-2.5f, 2.5f);
         }
-        while (Mathf.Abs(previousSpawnPosition - currentSpawnPosition) < 1.4f);
+        while (Mathf.Abs(previousSpawnPosition - currentSpawnPosition) < 1.2f);
         previousSpawnPosition = currentSpawnPosition;
     }
 

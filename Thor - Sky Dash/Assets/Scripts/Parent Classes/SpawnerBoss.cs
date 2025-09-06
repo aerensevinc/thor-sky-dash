@@ -9,6 +9,7 @@ public abstract class SpawnerBoss : Boss
     public float spawnRate;
     protected bool isSpawning;
     protected bool spawningOver;
+    protected string spawnSoundKey = "spawnSound";
 
     private void Start()
     {
@@ -62,6 +63,7 @@ public abstract class SpawnerBoss : Boss
         while (timer < spawnDuration && GameManager.instance.IsGameActive())
         {
             Instantiate(spawnedObject, SpawnPosition(), quaternion.identity);
+            PlaySpawnSound();
             yield return new WaitForSeconds(spawnRate);
             timer += spawnRate;
         }
@@ -72,5 +74,10 @@ public abstract class SpawnerBoss : Boss
     protected virtual Vector3 SpawnPosition()
     {
         return transform.position;
+    }
+
+    protected virtual void PlaySpawnSound()
+    {
+        AudioManager.instance.PlaySound(spawnSoundKey, true);
     }
 }

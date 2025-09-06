@@ -1,8 +1,4 @@
-using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
-using Unity.Android.Gradle;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Hela : SpawnerBoss
@@ -25,15 +21,17 @@ public class Hela : SpawnerBoss
     {
         float timer = 0f;
         isSpawning = true;
-        while (timer < spawnDuration)
+        while (timer < spawnDuration && GameManager.instance.IsGameActive())
         {
             Instantiate(spawnedObject, transform.position + Vector3.down, RotateTowardsThor());
+            AudioManager.instance.PlaySound(spawnSoundKey, true);
             yield return new WaitForSeconds(spawnRate);
             timer += spawnRate;
         }
         spawningOver = true;
         isSpawning = false;
     }
+    
     public Quaternion RotateTowardsThor()
     {
         Vector3 thorPosition = GameManager.instance.Thor.transform.position;
